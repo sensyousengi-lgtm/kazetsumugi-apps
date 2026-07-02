@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="佐渡・花火旅">
+<meta name="theme-color" content="#0e3a4a">
+<title>佐渡・長岡花火 旅のしおり</title>
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" href="favicon.ico">
+<style>
+  :root{
+    --sea:#0e3a4a;        /* 日本海の藍 */
+    --sea2:#16566b;
+    --gold:#c8902f;       /* 金山・花火 */
+    --toki:#e07a64;       /* 朱鷺 */
+    --paper:#f6f3ec;
+    --card:#ffffff;
+    --ink:#1d2a2e;
+    --muted:#6b7a80;
+    --line:#e4ded2;
+    --ok:#1f7a5a;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.6;-webkit-text-size-adjust:100%;
+    padding-bottom:40px;
+  }
+  .wrap{max-width:560px;margin:0 auto;}
+
+  /* header */
+  header{
+    background:linear-gradient(160deg,var(--sea),var(--sea2));
+    color:#fff;padding:18px 18px 14px;padding-top:max(18px,env(safe-area-inset-top));
+  }
+  header .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;margin:0 0 4px;}
+  header h1{font-size:21px;margin:0;font-weight:800;letter-spacing:.01em;}
+  header .dates{font-size:12.5px;opacity:.85;margin-top:3px;}
+
+  /* tabs */
+  .tabs{position:sticky;top:0;z-index:20;background:var(--sea);display:flex;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-top:env(safe-area-inset-top,0);}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{flex:0 0 auto;padding:11px 15px;color:#cfe0e6;font-size:13px;font-weight:700;
+    background:none;border:none;border-bottom:3px solid transparent;white-space:nowrap;font-family:inherit;}
+  .tab small{display:block;font-size:10px;font-weight:600;opacity:.75;letter-spacing:.04em;}
+  .tab.active{color:#fff;border-bottom-color:var(--gold);}
+
+  main{padding:14px 14px 0;}
+  .day{display:none;}
+  .day.active{display:block;animation:fade .18s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .dayhead{margin:4px 2px 12px;}
+  .dayhead h2{margin:0;font-size:17px;font-weight:800;}
+  .dayhead p{margin:3px 0 0;font-size:12.5px;color:var(--muted);}
+
+  .note-flex{background:#fff7e8;border:1px solid #f0dca8;border-radius:12px;padding:10px 12px;
+    font-size:12.5px;color:#7a5a17;margin:0 2px 14px;}
+  .note-flex b{color:var(--gold);}
+
+  /* timeline cards */
+  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:12px 13px;margin:0 2px 10px;position:relative;overflow:hidden;}
+  .item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--sea);}
+  .item.eat:before{background:var(--toki);}
+  .item.see:before{background:var(--gold);}
+  .item.ferry:before{background:#2f8fb0;}
+  .item.hike:before{background:#3c8a4e;}
+  .item.onsen:before{background:#b5683f;}
+  .item.fire:before{background:#b5384f;}
+  .item.stay:before{background:#7a6cae;}
+  .item .top{display:flex;align-items:baseline;gap:9px;}
+  .time{font-size:13px;font-weight:800;color:var(--sea);font-variant-numeric:tabular-nums;flex:0 0 auto;min-width:44px;}
+  .item.eat .time{color:var(--toki);}
+  .item.see .time{color:var(--gold);}
+  .item.hike .time{color:#3c8a4e;}
+  .item.onsen .time{color:#b5683f;}
+  .item.fire .time{color:#b5384f;}
+  .ttl{font-size:14.5px;font-weight:700;}
+  .cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;
+    margin-bottom:1px;}
+  .desc{font-size:12.5px;color:#4a575c;margin:5px 0 0;}
+  .desc.warn{color:#9a3a2a;}
+  .row{margin-top:8px;display:flex;flex-wrap:wrap;gap:7px;}
+  a.pin,a.tel{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;
+    text-decoration:none;padding:5px 10px;border-radius:999px;border:1px solid var(--line);}
+  a.pin{color:var(--sea);background:#eef5f7;border-color:#d3e6ec;}
+  a.tel{color:#2c6a3f;background:#eef6ef;border-color:#cfe6d4;}
+  a.pin:active,a.tel:active{transform:scale(.97);}
+
+  .plan-label{display:flex;align-items:center;gap:8px;margin:2px 2px 8px;font-size:13px;font-weight:800;}
+  .pill{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;letter-spacing:.05em;}
+  .pill.hike{background:#e7f3ea;color:#2f6e40;}
+  .pill.see{background:#fbf0d8;color:#8a6418;}
+
+  /* reference */
+  .ref h3,.lists h3{font-size:13px;letter-spacing:.06em;color:var(--muted);margin:18px 4px 8px;
+    text-transform:uppercase;font-weight:800;}
+  .ref .item{padding:11px 13px;}
+  .ref .ttl{font-size:13.5px;}
+  .kv{font-size:12.5px;color:#4a575c;margin-top:2px;}
+  .kv b{color:var(--ink);}
+
+  /* checklists */
+  .check{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 2px 12px;overflow:hidden;}
+  .check h4{margin:0;padding:12px 13px;font-size:14px;font-weight:800;background:#f0ece1;
+    display:flex;justify-content:space-between;align-items:center;}
+  .check h4 .cnt{font-size:11px;color:var(--muted);font-weight:700;}
+  .check ul{list-style:none;margin:0;padding:4px 0 6px;}
+  .check li{padding:0;}
+  .check label{display:flex;gap:11px;align-items:flex-start;padding:8px 13px;font-size:13.5px;cursor:pointer;}
+  .check input{appearance:none;-webkit-appearance:none;width:21px;height:21px;flex:0 0 auto;margin-top:1px;
+    border:2px solid #c7cdc9;border-radius:6px;position:relative;background:#fff;}
+  .check input:checked{background:var(--ok);border-color:var(--ok);}
+  .check input:checked:after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+    border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+  .check input:checked + span{color:#9aa4a0;text-decoration:line-through;}
+  .reset{display:block;margin:0 2px 24px;width:calc(100% - 4px);background:none;border:1px dashed var(--line);
+    color:var(--muted);font-size:12px;font-weight:700;padding:9px;border-radius:12px;font-family:inherit;}
+  .reset:active{background:#efece4;}
+
+  footer{text-align:center;font-size:11px;color:var(--muted);padding:8px 16px 24px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;}}
+  /* 起動スプラッシュ（佐渡島ヒーロー） */
+  #splash{position:fixed;inset:0;z-index:9000;background:#efe7cf url('hero.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:13vh;transition:opacity .6s ease}
+  #splash .st{background:rgba(14,58,74,.78);color:#fff;padding:10px 20px;border-radius:12px;text-align:center}
+  #splash .st b{display:block;font-size:20px;letter-spacing:.08em;font-weight:800}
+  #splash .st span{font-size:12px;opacity:.9;letter-spacing:.04em}
+  #splash.hide{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="splash" onclick="this.classList.add('hide')">
+  <div class="st"><b>佐渡島 ＋ 長岡花火</b><span>2026/7/31 → 8/4 ・ 旅のしおり</span></div>
+</div>
+<script>
+  setTimeout(function(){var s=document.getElementById('splash');if(s)s.classList.add('hide');},1800);
+  setTimeout(function(){var s=document.getElementById('splash');if(s)s.style.display='none';},2500);
+</script>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Sado &amp; Nagaoka Hanabi</p>
+    <h1>佐渡島＋長岡花火 旅のしおり</h1>
+    <div class="dates">2026/7/31(金) 〜 8/4(火) ・ 大人2名 ・ 自宅レンタカー</div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+  <main id="main"></main>
+
+  <footer>🧭タップで経路ナビ／☎電話。チェックは端末に保存。圏外に備え、出発前にGoogleマップで「佐渡島」「上越〜長岡」のオフラインマップをDLしておくと、電波が無くても経路が出ます。</footer>
+</div>
+
+<script>
+(function(){
+  function mapPin(label,q){return {pin:label||'地図', q:q};}
+  function url(q){return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=driving';}
+
+  // ---- itinerary data ----
+  var hikeBlock = {
+    label:'登山プラン', pill:'hike',
+    items:[
+      {t:'前夜',cat:'準備',cls:'hike',ttl:'行動食・弁当・水を前夜に調達',desc:'5時発なので当日朝の店は当てにしない。前夜に佐和田・金井のスーパー（キング佐和田・原信）かコンビニ(24h)で。ドンデン高原ロッジの弁当手配も可（要問い合わせ）。'},
+      {t:'05:00',cat:'移動',cls:'hike',ttl:'宿発 → ドンデン高原ロッジへ',desc:'両津側からドンデン線で約60〜70分。ヘッドライト携行。',map:mapPin('ドンデン高原ロッジ','ドンデン高原ロッジ 佐渡')},
+      {t:'06:00',cat:'登山',cls:'hike',ttl:'ドンデンピストン（金北山 往復）',desc:'ロッジに駐車→稜線を金北山まで往復、約7時間。車回収なし・砂利道回避。下山は無理せず。',map:mapPin('登山口','ドンデン高原ロッジ 佐渡')},
+      {t:'—',cat:'手続',cls:'hike',ttl:'登山届（事前提出済みを確認）',desc:'佐渡トレッキング協議会へ事前提出。雨具上下は必須。'},
+      {t:'下山後',cat:'食事',cls:'eat',ttl:'加茂湖 カキ小屋（夏の岩牡蠣・浜焼き）',desc:'下山後の遅め昼に◎。両津・加茂湖畔で温泉と同じ方面。夏の岩牡蠣・サザエ・イカを浜焼きで。営業時間・季節は要確認。※カキ小屋でなくても、夜の居酒屋（持田家・味よし等）で岩ガキを一品で頼めばOK。入荷次第なので入店時に確認を。',map:mapPin('加茂湖 カキ小屋','加茂湖 カキ小屋 佐渡 新穂')},
+      {t:'下山後',cat:'温泉',cls:'onsen',ttl:'椎崎温泉 喜らく（日帰り入浴）',desc:'加茂湖畔の絶景露天。14:00〜23:00・大人500円。筋肉痛に効くナトリウム塩化物泉。',map:mapPin('椎崎温泉 喜らく','佐渡グリーンホテルきらく 椎崎温泉 佐渡市原黒658'),tel:'0259-27-6101'},
+      {t:'夜',cat:'食事',cls:'eat',ttl:'夕食：居酒屋 長運（両津・夷）',desc:'評価4.7。漁師の親戚直送で刺身が抜群、名物は甘えびのなめろう。地酒あり。月木金土日営業（火水休）＝8/1も8/2も開。要予約。妻が運転なので地酒を楽しめる。※8/1（土）に登るなら、味よし(梅津・刺身4.5)/kaneto(加茂湖畔・創作4.9・要予約)/りゃんと(地酒)も候補（いずれも日曜は休or昼のみ）。',map:mapPin('居酒屋 長運','居酒屋 長運 佐渡 両津夷261'),tel:'0259-27-5577'}
+    ]
+  };
+  var seeBlock = {
+    label:'観光プラン（西側一筆書き）', pill:'see',
+    items:[
+      {t:'午前',cat:'観光',cls:'see',ttl:'トキの森公園',desc:'朱鷺を間近に（確実に見える）。',map:mapPin('トキの森公園','トキの森公園 佐渡')},
+      {t:'早朝/夕',cat:'観光',cls:'see',ttl:'トキロード（新穂の田んぼ／野生のトキ）',desc:'新穂・国仲平野の田んぼで野生のトキ狙い。早朝(日の出〜9時)・夕方(16時〜)が出会いやすい。必ず車内から観察・近づかない・私有地に入らない。飛ぶと風切羽が朱鷺色。会えたらラッキー。',map:mapPin('トキロード（新穂）','トキの森公園 佐渡 新穂')},
+      {t:'昼',cat:'食事',cls:'eat',ttl:'昼食：その日の気分で選ぶ（下の4候補）',desc:'当日決定。生魚OKなら持田家、いろいろ選びたいならじんのび、サッとならあごらーめん、素朴な定食なら山下食堂。'},
+      {t:'候補',cat:'昼候補',cls:'eat',ttl:'持田家（相川・海鮮丼）',desc:'古民家の地魚、名物の海鮮丼。佐渡金山のすぐ近くで動線◎。岩ガキも頼める。11-14/18-21・月休。4.1/246件。',map:mapPin('持田家','持田家 佐渡 相川'),tel:'0259-67-7268'},
+      {t:'候補',cat:'昼候補',cls:'eat',ttl:'じんのび cafe&restaurant（真野）',desc:'高台で眺望◎。ブリカツ定食・ブリカレー・南蛮えびブイヤベースラーメンなど寿司以外が豊富で、夫婦で別ジャンルを頼める。11-15時。4.2/122件。',map:mapPin('じんのび cafe&restaurant','じんのび 佐渡 真野'),tel:'0259-55-1788'},
+      {t:'候補',cat:'昼候補',cls:'eat',ttl:'あごらーめん SADOKITCHEN（相川）',desc:'佐渡のあごだし（トビウオ出汁）ラーメン。金山・北沢のすぐ近くでサッと。11-14/17-20:30・水休。',map:mapPin('あごらーめん SADOKITCHEN','あごらーめん SADOKITCHEN 佐渡 相川')},
+      {t:'候補',cat:'昼候補',cls:'eat',ttl:'山下食堂（佐和田）',desc:'日替わり定食のみの地元食堂。小鉢たっぷり・ボリューム・約1000円。素朴で評価4.7。',map:mapPin('山下食堂','山下食堂 佐渡 河原田本町'),tel:'0259-67-7554'},
+      {t:'午後',cat:'観光',cls:'see',ttl:'佐渡金山',desc:'世界文化遺産。',map:mapPin('史跡 佐渡金山','史跡 佐渡金山 相川')},
+      {t:'↓',cat:'観光',cls:'see',ttl:'北沢浮遊選鉱場',desc:'金山の隣。「佐渡のラピュタ」。無料・24h。',map:mapPin('北沢浮遊選鉱場','北沢浮遊選鉱場 佐渡市相川北沢町')},
+      {t:'夕',cat:'観光',cls:'see',ttl:'尖閣湾 揚島遊園',desc:'透明な入江をグラスボートで。〜17:30。',map:mapPin('尖閣湾 揚島遊園','尖閣湾揚島遊園 佐渡')},
+      {t:'絶景',cat:'ドライブ',cls:'see',ttl:'大佐渡スカイライン → 白雲台展望台',desc:'相川から上る尾根越えの絶景道（約30km）。白雲台(標高約850m・展望9〜17時)から佐渡ほぼ全島を一望。道は狭く急カーブ、給油は登る前に。夏は通行可（当日の通行情報を確認）。',map:mapPin('白雲台展望台','交流センター白雲台 大佐渡スカイライン 佐渡')},
+      {t:'夜',cat:'観光',cls:'see',ttl:'北沢ライトアップ（再訪）',desc:'19:00〜22:00。昼と別物の幻想的な雰囲気。',map:mapPin('北沢浮遊選鉱場','北沢浮遊選鉱場 佐渡市相川北沢町')},
+      {t:'夕食',cat:'食事',cls:'eat',ttl:'レストランこさど（真野・佐渡牛ステーキ）',desc:'幻の佐渡牛サーロインを常時。相川観光の帰り、宿(千種)に近い真野で。11-14/17-21・水休。夜は予約推奨。',map:mapPin('レストランこさど','レストランこさど 佐渡 真野新町275-2'),tel:'0259-55-4004'}
+    ]
+  };
+
+  var days = [
+    {key:'7/31',dow:'金',title:'7/31(金)｜移動＋小木',sub:'自宅→たちばな→直江津→14:00便→小木',
+     items:[
+      {t:'07:00',cat:'出発',cls:'move',ttl:'ニコニコレンタカー 新百合ヶ丘店',desc:'受取（手続き含め7:20発めやす）。給油満タン返却の条件を確認。',map:mapPin('新百合ヶ丘店','ニコニコレンタカー新百合ヶ丘店 川崎市麻生区古沢30-3'),tel:'044-299-7231'},
+      {t:'〜11:30',cat:'昼食',cls:'eat',ttl:'とん汁の店 たちばな（妙高市新井）',desc:'上信越道の通り道。10:30開店・行列必至。混雑時は持ち帰りも。',map:mapPin('とん汁 たちばな','とん汁の店 たちばな 妙高市栗原2-3-10'),tel:'0255-72-2450'},
+      {t:'13:00',cat:'要注意',cls:'move',ttl:'たちばなを出るデッドライン',desc:'ここを過ぎたら乗船優先。直江津港まで約30〜40分。'},
+      {t:'13:15',cat:'駐車',cls:'move',ttl:'直江津港 着・駐車',desc:'佐渡汽船の平面駐車場（1h50円・1日上限約1,000円）。先着順・予約不可。満車なら周辺コインP/akippa。',map:mapPin('直江津港 佐渡汽船','直江津港 佐渡汽船ターミナル 上越市')},
+      {t:'14:00',cat:'乗船',cls:'ferry',ttl:'直江津 → 小木（こがね丸）',desc:'所要2時間40分。徒歩乗船（車は載せない）。'},
+      {t:'16:40',cat:'到着',cls:'ferry',ttl:'小木港 着'},
+      {t:'17:00',cat:'レンタカー',cls:'move',ttl:'ニコニコレンタカー 佐渡小木港店',desc:'港から徒歩1分。〜18:00営業。返却は8/3朝。',map:mapPin('小木港店','ニコニコレンタカー佐渡小木港店 佐渡市小木町1935-7'),tel:'0120-322-525'},
+      {t:'夕方',cat:'写真',cls:'see',ttl:'背合（せなごう）バス停',desc:'「恋するバス停」。真野湾沿い・国道350号の白いバス停。小木→宿の通り道で、夕暮れが映える。さっと撮影（交通量多め・車に注意）。',map:mapPin('背合バス停','背合バス停 佐渡 真野湾')},
+      {t:'夕食',cat:'食事',cls:'eat',ttl:'夕食：弁慶（佐和田・寿司）or えん萬（羽茂・串焼き）',desc:'弁慶＝地魚回転寿司（佐和田／〜21時／行列・予約不可）。えん萬＝羽茂の炭火串焼(評価4.9・火〜日17時〜・月休)で、背合と同じ南ルート上。初日は南で串焼き、という手も。',map:mapPin('弁慶 佐渡本店','佐渡 廻転寿司 弁慶 佐渡本店 佐和田'),tel:'0259-52-3453'},
+      {t:'',cat:'食事候補',cls:'eat',ttl:'炭火串焼 えん萬（羽茂）',desc:'南エリアの名店。串焼き・レバーが絶品と評判。火〜日17:00〜・月休。',map:mapPin('炭火串焼 えん萬','炭火串焼 えん萬 佐渡 羽茂本郷'),tel:'0259-88-3567'},
+      {t:'泊',cat:'宿',cls:'stay',ttl:'ホテル ネストタイム（千種）',desc:'24時間チェックイン可。無料駐車場。',map:mapPin('ネストタイム','ホテルネストタイム 佐渡市千種甲397')}
+     ]},
+    {key:'8/1',dow:'土',title:'8/1(土)｜登山（金北山ドンデンピストン）',sub:'※天気が悪ければ8/2と入れ替え（晴れる日に登山）',block:'hike'},
+    {key:'8/2',dow:'日',title:'8/2(日)｜観光（西側一筆書き）',sub:'※天気が悪ければ8/1と入れ替え',block:'see'},
+    {key:'8/3',dow:'月',title:'8/3(月)｜朝便で本土→長岡花火',sub:'早めに渡る（台風欠航対策）',
+     items:[
+      {t:'⚠',cat:'要注意',cls:'fire',ttl:'悪天時 Plan B（前倒し撤退）',desc:'3日前〜前夜に佐渡汽船「1週間就欠航予報」＋台風進路を確認。8/3が確実に危ういと判明したら→(1)8/2に上越の宿を確保（きっちんやど連泊 or 別宿／無料キャンセル可で）(2)8/2 17:25 小木→直江津で前倒し撤退→上越泊(3)8/3は朝からフリーで長岡へ（上越周辺を半日観光してから花火も可）。佐渡レンタカーは8/2夕方返却に変更（小木港店へ一報）。たらい船・宿根木は割愛。海上欠航でも長岡花火は実施されることがある＝渡れないと詰むので、当日に賭けず前日撤退が堅い。'},
+      {t:'07:00',cat:'観光',cls:'see',ttl:'宿根木（朝の散策・7:00〜7:40）',desc:'宿(千種)を6:15頃発→約40分。集落は1haほどでコンパクト、外観・石畳の路地・三角家の外観・海辺を撮影。内部見学は9時〜なので今回は街歩き中心。7:40発→小木港まで約10分で、8:30のたらい船に余裕。',map:mapPin('宿根木','宿根木 佐渡')},
+      {t:'08:30',cat:'体験',cls:'see',ttl:'たらい船（力屋観光汽船・小木）',desc:'一番乗りで。',map:mapPin('力屋観光汽船','力屋観光汽船 たらい舟 小木')},
+      {t:'〜09:30',cat:'返却',cls:'move',ttl:'佐渡レンタカー 返却（小木港店）',desc:'8:00開店。乗船前に返す。',map:mapPin('小木港店','ニコニコレンタカー佐渡小木港店 佐渡市小木町1935-7'),tel:'0120-322-525'},
+      {t:'10:35',cat:'乗船',cls:'ferry',ttl:'小木 → 直江津（こがね丸）',desc:'前夜に運航状況を必ず確認。'},
+      {t:'13:15',cat:'到着',cls:'ferry',ttl:'直江津港 着・自分の車を回収'},
+      {t:'〜14:00',cat:'宿',cls:'stay',ttl:'きっちんやど本舗（上越）先入り',desc:'チェックイン手続き・荷物投入・鍵受取（花火後の深夜帰着に備える）。事前に深夜帰着を一報。',map:mapPin('きっちんやど本舗','きっちんやど本舗 上越市木田')},
+      {t:'買い出し',cat:'準備',cls:'fire',ttl:'観覧用の飲み物・軽食は上越で先に',desc:'長岡市内・会場周辺・周辺スーパーは当日午後〜夕方が激混み＆品薄。上越のスーパー（原信・ウオロク）か北陸道SAで、長岡に入る前に買っておく。飲み物は特に先に。※帰りも運転なのでドライバーはノンアル。'},
+      {t:'夕方',cat:'移動',cls:'fire',ttl:'長岡へ（約1時間）'},
+      {t:'15〜16時',cat:'食事',cls:'eat',ttl:'青島食堂 宮内駅前店（生姜醤油ラーメン）',desc:'長岡名物の元祖。遅め昼(15時台)なら行列が比較的マシ。11-19時・第3水休(8/3は営業)・駐車場20台・現金のみ。満車なら近隣の生姜醤油店へ。',map:mapPin('青島食堂 宮内駅前店','青島食堂 宮内駅前店 長岡市宮内3-5-3'),tel:'0258-34-1186'},
+      {t:'駐車',cat:'駐車',cls:'fire',ttl:'越後丘陵公園（B会場・抽選結果待ち）',desc:'当選なら駐車→無料シャトルでB会場。外れたら代替Pを手配。',map:mapPin('越後丘陵公園','国営越後丘陵公園 長岡')},
+      {t:'19:20',cat:'花火',cls:'fire',ttl:'長岡花火 B会場（〜21:10）',desc:'花火後は上越のきっちんやどへ戻って就寝。'},
+      {t:'泊',cat:'宿',cls:'stay',ttl:'きっちんやど本舗（上越）'}
+     ]},
+    {key:'8/4',dow:'火',title:'8/4(火)｜帰宅',sub:'上越 → 自宅（約300km）',
+     items:[
+      {t:'午前',cat:'出発',cls:'move',ttl:'上越を出発',desc:'上信越道・関越（または中央道）。約4〜4.5時間＋休憩。'},
+      {t:'〜17:00',cat:'返却',cls:'move',ttl:'ニコニコレンタカー 新百合ヶ丘店 返却',desc:'9〜10時発なら余裕。給油満タンで。',map:mapPin('新百合ヶ丘店','ニコニコレンタカー新百合ヶ丘店 川崎市麻生区古沢30-3'),tel:'044-299-7231'}
+     ]}
+  ];
+
+  // ---- reference ----
+  var ref = [
+    {ttl:'フェリー（直江津航路・こがね丸）',rows:[
+      '行き：<b>7/31 直江津14:00 → 小木16:40</b>',
+      '帰り：<b>8/3 小木10:35 → 直江津13:15</b>',
+      '所要2時間40分／1日2便のみ',
+    ],map:mapPin('佐渡汽船 直江津港','直江津港 佐渡汽船ターミナル 上越市'),tel:'0570-200310'},
+    {ttl:'⚠ 悪天時 Plan B（前倒し撤退）',rows:[
+      '3日前〜前夜に就欠航予報＋台風を確認',
+      '危うければ<b>8/2に上越の宿を確保→8/2 17:25便で直江津へ前倒し</b>',
+      '8/3は朝からフリーで長岡へ（連泊なら鍵保持で楽）',
+      '※海上欠航でも花火は実施され得る＝当日に賭けない'
+    ]},
+    {ttl:'長岡花火',rows:['<b>8/3(月) 19:20〜21:10</b>・B会場','駐車：越後丘陵公園（抽選・1,800台・無料シャトル）','一次抽選 申込済 → 結果7/1発表']},
+    {ttl:'レンタカー①（本土）',rows:['ニコニコ新百合ヶ丘店','<b>7/31 07:00 受取 〜 8/4 17:00 返却</b>'],tel:'044-299-7231'},
+    {ttl:'レンタカー②（佐渡）',rows:['ニコニコ佐渡小木港店','<b>7/31 17:00 〜 8/3 09:30</b>'],tel:'0120-322-525'},
+    {ttl:'宿',rows:['7/31〜8/2：ホテルネストタイム（千種）','8/3：きっちんやど本舗（上越）']}
+  ];
+
+  // ---- checklists ----
+  var lists = [
+    {id:'pack',title:'持ち物（4泊5日・夏）',items:[
+      '免許証・身分証・現金・クレカ','スマホ・充電器・モバイルバッテリー',
+      'フェリー予約番号','花火 観覧チケット・駐車券（当選後）',
+      '着替え4泊分・下着・靴下','洗面用具・常備薬','日焼け止め・虫除け',
+      '雨具（折りたたみ傘/カッパ）','サングラス・帽子','エコバッグ・ビニール袋','カメラ（任意）'
+    ]},
+    {id:'hike',title:'金北山 ドンデンピストン 登山装備',items:[
+      '登山靴・ザック(20〜30L)','レインウェア上下（必須）','行動食・昼食・水1.5〜2L',
+      'ヘッドライト（早朝発）','地図/GPS（スマホ）・モバイルバッテリー','登山届（提出済み確認）',
+      '防寒着・帽子・手袋','ファーストエイド・テーピング','タオル・下山後の着替え',
+      'トレッキングポール（任意）','熊鈴・虫除け（任意）','温泉セット（喜らく用）'
+    ]},
+    {id:'todo',title:'要確認・予約',items:[
+      'Googleマップで「佐渡島」＋「上越〜長岡」のオフラインマップをDL（圏外でも経路ナビが動く）',
+      '越後丘陵公園 抽選結果（7/1）＋外れ時の代替P','登山届を佐渡トレッキング協議会へ提出',
+      'きっちんやど 8/3 予約＋深夜帰着の一報','新百合ヶ丘レンタカー予約（7/1以降）',
+      '直江津港 駐車場（先着）or akippa予約','佐渡レンタカー 小木港店 予約',
+      'ネストタイム3連泊 予約（済）'
+    ]}
+  ];
+
+  // ---- render ----
+  function itemHTML(it){
+    var cls='item '+(it.cls||'move');
+    var pin = it.map ? '<a class="pin" target="_blank" rel="noopener" href="'+url(it.map.q)+'">🧭 '+it.map.pin+'</a>' : '';
+    var tel = it.tel ? '<a class="tel" href="tel:'+it.tel.replace(/[^0-9]/g,'')+'">☎ '+it.tel+'</a>' : '';
+    var row = (pin||tel) ? '<div class="row">'+pin+tel+'</div>' : '';
+    var desc = it.desc ? '<p class="desc'+(it.cat==='要注意'?' warn':'')+'">'+it.desc+'</p>' : '';
+    return '<div class="'+cls+'"><div class="cat">'+(it.cat||'')+'</div>'+
+      '<div class="top"><div class="time">'+it.t+'</div><div class="ttl">'+it.ttl+'</div></div>'+
+      desc+row+'</div>';
+  }
+  function blockHTML(b){
+    var h='<div class="plan-label"><span class="pill '+b.pill+'">'+b.label+'</span></div>';
+    h+=b.items.map(itemHTML).join('');
+    return h;
+  }
+
+  var tabs=document.getElementById('tabs'), main=document.getElementById('main');
+  days.forEach(function(d,i){
+    var btn=document.createElement('button');
+    btn.className='tab'+(i===0?' active':'');
+    btn.innerHTML=d.key+'<small>'+d.dow+'</small>';
+    btn.onclick=function(){
+      document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+      document.querySelectorAll('.day').forEach(function(s){s.classList.remove('active');});
+      btn.classList.add('active');
+      document.getElementById('day'+i).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+    tabs.appendChild(btn);
+
+    var sec=document.createElement('section');
+    sec.className='day'+(i===0?' active':'');
+    sec.id='day'+i;
+    var html='<div class="dayhead"><h2>'+d.title+'</h2><p>'+d.sub+'</p></div>';
+    if(d.block==='hike'){
+      html+='<div class="note-flex">基本は<b>この登山プラン</b>でOK。8/1・8/2は<b>晴れる方に登山</b>を入れ替え可（その場合は8/2の観光プランと入れ替え）。</div>';
+      html+=blockHTML(hikeBlock);
+    } else if(d.block==='see'){
+      html+='<div class="note-flex">基本は<b>この観光プラン</b>でOK。天気次第で8/1の登山プランと入れ替え可。</div>';
+      html+=blockHTML(seeBlock);
+    } else {
+      html+=d.items.map(itemHTML).join('');
+    }
+    // reference + checklists only on last tab
+    if(i===days.length-1){
+      html+='<div class="ref"><h3>まとめ・連絡先</h3>'+ref.map(function(r){
+        var pin=r.map?'<a class="pin" target="_blank" rel="noopener" href="'+url(r.map.q)+'">🧭 '+r.map.pin+'</a>':'';
+        var tel=r.tel?'<a class="tel" href="tel:'+r.tel.replace(/[^0-9]/g,'')+'">☎ '+r.tel+'</a>':'';
+        var rowsHtml=r.rows.map(function(x){return '<div class="kv">'+x+'</div>';}).join('');
+        var foot=(pin||tel)?'<div class="row">'+pin+tel+'</div>':'';
+        return '<div class="item"><div class="ttl">'+r.ttl+'</div>'+rowsHtml+foot+'</div>';
+      }).join('')+'</div>';
+      html+='<div class="lists"><h3>チェックリスト</h3><div id="lists"></div></div>';
+    }
+    sec.innerHTML=html;
+    main.appendChild(sec);
+  });
+
+  // ---- checklists with localStorage ----
+  var KEY='sado_trip_checks_v1';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  var state=load();
+  var host=document.getElementById('lists');
+  if(host){
+    lists.forEach(function(L){
+      var box=document.createElement('div');box.className='check';
+      var total=L.items.length, done=L.items.filter(function(_,j){return state[L.id+'_'+j];}).length;
+      box.innerHTML='<h4>'+L.title+'<span class="cnt" id="cnt_'+L.id+'">'+done+' / '+total+'</span></h4>';
+      var ul=document.createElement('ul');
+      L.items.forEach(function(label,j){
+        var id=L.id+'_'+j;
+        var li=document.createElement('li');
+        var checked=state[id]?'checked':'';
+        li.innerHTML='<label><input type="checkbox" '+checked+' data-id="'+id+'"><span>'+label+'</span></label>';
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      host.appendChild(box);
+      var rb=document.createElement('button');rb.className='reset';rb.textContent='「'+L.title+'」のチェックを全部外す';
+      rb.onclick=function(){
+        L.items.forEach(function(_,j){delete state[L.id+'_'+j];});
+        save(state);
+        box.querySelectorAll('input').forEach(function(c){c.checked=false;c.parentElement.querySelector('span').style.color='';});
+        updateCnt(L);
+      };
+      host.appendChild(rb);
+    });
+    host.addEventListener('change',function(e){
+      var c=e.target; if(c.type!=='checkbox')return;
+      state[c.getAttribute('data-id')]=c.checked; save(state);
+      var lid=c.getAttribute('data-id').split('_')[0];
+      var L=lists.filter(function(x){return x.id===lid;})[0]; updateCnt(L);
+    });
+  }
+  function updateCnt(L){
+    var total=L.items.length, done=L.items.filter(function(_,j){return state[L.id+'_'+j];}).length;
+    var el=document.getElementById('cnt_'+L.id); if(el)el.textContent=done+' / '+total;
+  }
+})();
+</script>
+</body>
+</html>
