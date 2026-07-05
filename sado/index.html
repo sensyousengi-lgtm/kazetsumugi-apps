@@ -231,7 +231,8 @@
      items:[
       {t:'午前',cat:'出発',cls:'move',ttl:'上越を出発',desc:'上信越道・関越（または中央道）。約4〜4.5時間＋休憩。'},
       {t:'〜17:00',cat:'返却',cls:'move',ttl:'ニコニコレンタカー 新百合ヶ丘店 返却',desc:'9〜10時発なら余裕。給油満タンで。',map:mapPin('新百合ヶ丘店','ニコニコレンタカー新百合ヶ丘店 川崎市麻生区古沢30-3'),tel:'044-299-7231'}
-     ]}
+     ]},
+    {key:'持ち物',dow:'準備',title:'持ち物・装備・予約・連絡先',sub:'準備はこのタブに集約。チェックは端末に保存されます',block:'prep'}
   ];
 
   // ---- reference ----
@@ -317,11 +318,8 @@
     } else if(d.block==='see'){
       html+='<div class="note-flex">基本は<b>この観光プラン</b>でOK。天気次第で8/1の登山プランと入れ替え可。</div>';
       html+=blockHTML(seeBlock);
-    } else {
-      html+=d.items.map(itemHTML).join('');
-    }
-    // reference + checklists only on last tab
-    if(i===days.length-1){
+    } else if(d.block==='prep'){
+      html+='<div class="lists"><h3>チェックリスト</h3><div id="lists"></div></div>';
       html+='<div class="ref"><h3>まとめ・連絡先</h3>'+ref.map(function(r){
         var pin=r.map?'<a class="pin" target="_blank" rel="noopener" href="'+url(r.map.q)+'">🧭 '+r.map.pin+'</a>':'';
         var tel=r.tel?'<a class="tel" href="tel:'+r.tel.replace(/[^0-9]/g,'')+'">☎ '+r.tel+'</a>':'';
@@ -329,7 +327,8 @@
         var foot=(pin||tel)?'<div class="row">'+pin+tel+'</div>':'';
         return '<div class="item"><div class="ttl">'+r.ttl+'</div>'+rowsHtml+foot+'</div>';
       }).join('')+'</div>';
-      html+='<div class="lists"><h3>チェックリスト</h3><div id="lists"></div></div>';
+    } else {
+      html+=d.items.map(itemHTML).join('');
     }
     sec.innerHTML=html;
     main.appendChild(sec);
