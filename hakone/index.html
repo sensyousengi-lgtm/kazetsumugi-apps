@@ -71,10 +71,24 @@
 </style>
 </head>
 <body>
+<!-- 一時デバッグ（白画面診断用）・原因確定後に削除 -->
+<script>
+window.onerror=function(msg,src,line,col,err){
+  var d=document.getElementById('errbar');
+  if(!d){ d=document.createElement('div'); d.id='errbar';
+    d.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#b3261e;color:#fff;font-size:12px;padding:6px 10px;white-space:pre-wrap;word-break:break-all'; document.body.appendChild(d); }
+  d.textContent='ERR: '+msg+' @'+line+':'+col;
+  return false;
+};
+</script>
 <div id="splash" onclick="this.classList.add('hide')">
   <div class="st"><b>箱根八里</b><span>小田原 → 三島 ・ なぞり地図</span></div>
 </div>
 <script>
+  function hideSplashNow(){
+    var s=document.getElementById('splash');
+    if(s){ s.classList.add('hide'); s.style.display='none'; }
+  }
   setTimeout(function(){var s=document.getElementById('splash');if(s)s.classList.add('hide');},800);
   setTimeout(function(){var s=document.getElementById('splash');if(s)s.style.display='none';},1400);
 </script>
@@ -181,6 +195,20 @@ LM.forEach((p,i)=>{
 });
 
 let current = -1;
+function saveState(){
+  try{ localStorage.setItem('hakone_state', JSON.stringify({current:current, mode:activeMode.key})); }catch(e){}
+}
+function restoreState(){
+  try{
+    var raw=localStorage.getItem('hakone_state'); if(!raw) return;
+    var st=JSON.parse(raw);
+    if(st && modes.find(function(m){return m.key===st.mode;})) applyMode(st.mode);
+    if(st && typeof st.current==='number' && st.current>=0 && st.current<LM.length && isVisible(LM[st.current])){
+      current=st.current;
+      syncStep();
+    }
+  }catch(e){}
+}
 function boundsForVisible(){
   return L.latLngBounds(visibleIndices().map(i=>LM[i].ll));
 }
@@ -226,6 +254,7 @@ function syncStep(fly=true){
   nb.onclick=()=>window.open(gmapDirUrl(it),'_blank','noopener');
   if(fly) map.flyTo(it.ll,15,{duration:.6});
   markers[current].openPopup();
+  saveState();
 }
 function applyMode(key,fit=false){
   activeMode = modes.find(m=>m.key===key) || modes[0];
@@ -234,6 +263,7 @@ function applyMode(key,fit=false){
   renderList();
   if(current>=0 && isVisible(LM[current])) syncStep(false);
   if(fit) map.fitBounds(boundsForVisible().pad(.1));
+  saveState();
 }
 
 document.getElementById('next').onclick=()=>moveStep(1);
@@ -252,9 +282,15 @@ function toggleDrawer(open){document.getElementById('drawer').classList.toggle('
 document.querySelectorAll('#modebar button').forEach(btn=>btn.onclick=()=>applyMode(btn.dataset.mode,true));
 applyMode('kaido');
 map.fitBounds(boundsForVisible().pad(.1));
+restoreState();
 
 // 外部ナビ（Googleマップ）から復帰した時、地図タイルが真っ白のままにならないよう再計算する
-function refreshMapSize(){ setTimeout(function(){ map.invalidateSize(true); }, 100); }
+function refreshMapSize(){
+  hideSplashNow();
+  [100,600].forEach(function(ms){
+    setTimeout(function(){ if(map) map.invalidateSize(true); }, ms);
+  });
+}
 window.addEventListener('pageshow', refreshMapSize);
 document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='visible') refreshMapSize(); });
 </script>
