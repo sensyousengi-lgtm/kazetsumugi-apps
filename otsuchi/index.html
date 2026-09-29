@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="大槌ジビエ旅">
+<meta name="theme-color" content="#2f4d3a">
+<meta name="description" content="大槌ジビエ旅（2026/10/10〜11）の旅のしおり">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-512.png">
+<title>大槌ジビエ旅 旅のしおり</title>
+<style>
+  :root{
+    --forest:#2f4d3a;     /* 岩手の森 */
+    --forest2:#3f6b4c;
+    --rust:#b5652f;       /* 紅葉・鹿肉 */
+    --gold:#c8902f;       /* BBQ・体験 */
+    --hunt:#7a3030;       /* 狩猟・解体 */
+    --stay:#7a6cae;       /* 宿 */
+    --paper:#f6f3ec;
+    --card:#ffffff;
+    --ink:#1d2a2e;
+    --muted:#56646a;
+    --line:#e4ded2;
+    --ok:#1f7a5a;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{word-break:auto-phrase;line-break:strict;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background:var(--paper);color:var(--ink);
+    line-height:1.6;-webkit-text-size-adjust:100%;
+    padding-bottom:40px;
+  }
+  .wrap{max-width:560px;margin:0 auto;}
+
+  header{
+    background:linear-gradient(160deg,var(--forest),var(--forest2));
+    color:#fff;padding:16px 16px 16px;padding-top:max(16px,env(safe-area-inset-top));
+  }
+  header .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.8;margin:0 0 4px;}
+  header h1{font-size:21px;margin:0;font-weight:800;letter-spacing:.01em;}
+  header .dates{font-size:12.5px;opacity:.85;margin-top:4px;}
+
+  .tabs{position:sticky;top:0;z-index:20;background:var(--forest);display:flex;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;padding-top:env(safe-area-inset-top,0);}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab{flex:0 0 auto;padding:12px 16px;color:#d8e6da;font-size:13px;font-weight:700;
+    background:none;border:none;border-bottom:3px solid transparent;white-space:nowrap;font-family:inherit;}
+  .tab small{display:block;font-size:10px;font-weight:600;opacity:.75;letter-spacing:.04em;}
+  .tab.active{color:#fff;border-bottom-color:var(--gold);}
+
+  main{padding:16px 16px 0;}
+  .day{display:none;}
+  .day.active{display:block;animation:fade .18s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .dayhead{margin:8px 0 16px;}
+  .dayhead h2{margin:0;font-size:17px;font-weight:800;}
+  .dayhead p{margin:4px 0 0;font-size:12.5px;color:var(--muted);}
+
+  .note-flex{background:#fff7e8;border:1px solid #f0dca8;border-radius:16px;padding:12px 16px;
+    font-size:12.5px;color:#7a5a17;margin:0 0 16px;}
+  .note-flex b{color:var(--gold);}
+  .note-flex.pending{background:#fdeeee;border-color:#eec3c3;color:#8a2f2f;}
+  .note-flex.pending b{color:var(--hunt);}
+
+  .item{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:16px;margin:0 0 8px;position:relative;overflow:hidden;}
+  .item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--forest);}
+  .item.eat:before{background:var(--rust);}
+  .item.tour:before{background:var(--gold);}
+  .item.hunt:before{background:var(--hunt);}
+  .item.stay:before{background:var(--stay);}
+  .item.pending:before{background-image:repeating-linear-gradient(135deg,#c98a3a,#c98a3a 4px,#e9c98f 4px,#e9c98f 8px);}
+  .item .top{display:flex;align-items:baseline;gap:8px;}
+  .time{font-size:13px;font-weight:800;color:var(--forest);font-variant-numeric:tabular-nums;flex:0 0 auto;min-width:48px;}
+  .item.eat .time{color:#9a5226;}
+  .item.tour .time{color:#8a6418;}
+  .item.hunt .time{color:var(--hunt);}
+  .item.stay .time{color:var(--stay);}
+  .ttl{font-size:14.5px;font-weight:700;}
+  .cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;
+    margin-bottom:4px;}
+  .desc{font-size:12.5px;color:#4a575c;margin:8px 0 0;}
+  .desc.warn{color:#9a3a2a;}
+  .row{margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;}
+  a.pin,a.tel,a.link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;
+    text-decoration:none;padding:4px 12px;border-radius:999px;border:1px solid var(--line);}
+  a.pin{color:var(--forest);background:#eef5f0;border-color:#d3e6da;}
+  a.tel{color:#2c6a3f;background:#eef6ef;border-color:#cfe6d4;}
+  a.link{color:#7a4fae;background:#f3ecfa;border-color:#e2d5f0;}
+  a.pin:active,a.tel:active,a.link:active{transform:scale(.97);}
+
+  .plan-label{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:13px;font-weight:800;}
+  .pill{font-size:10.5px;font-weight:800;padding:4px 8px;border-radius:999px;letter-spacing:.05em;}
+  .pill.tour{background:#fbf0d8;color:#8a6418;}
+  .pill.hunt{background:#f6dede;color:#7a3030;}
+
+  .ref h3,.lists h3{font-size:13px;letter-spacing:.06em;color:var(--muted);margin:16px 0 8px;
+    text-transform:uppercase;font-weight:800;}
+  .ref .item{padding:16px;}
+  .ref .ttl{font-size:13.5px;}
+  .kv{font-size:12.5px;color:#4a575c;margin-top:4px;}
+  .kv b{color:var(--ink);}
+
+  .check{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:0 0 16px;overflow:hidden;}
+  .check h4{margin:0;padding:12px 16px;font-size:14px;font-weight:800;background:#f0ece1;
+    display:flex;justify-content:space-between;align-items:center;}
+  .check h4 .cnt{font-size:11px;color:var(--muted);font-weight:700;}
+  .check ul{list-style:none;margin:0;padding:4px 0 8px;}
+  .check li{padding:0;}
+  .check label{display:flex;gap:12px;align-items:flex-start;padding:8px 16px;font-size:13.5px;cursor:pointer;}
+  .check input{appearance:none;-webkit-appearance:none;width:20px;height:20px;flex:0 0 auto;margin-top:2px;
+    border:2px solid #c7cdc9;border-radius:6px;position:relative;background:#fff;}
+  .check input:checked{background:var(--ok);border-color:var(--ok);}
+  .check input:checked:after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+    border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);}
+  .check input:checked + span{color:#9aa4a0;text-decoration:line-through;}
+  .reset{display:block;margin:0 0 24px;width:100%;background:none;border:1px dashed var(--line);
+    color:var(--muted);font-size:12px;font-weight:700;padding:8px;border-radius:16px;font-family:inherit;}
+  .reset:active{background:#efece4;}
+
+  footer{text-align:center;font-size:11px;color:var(--muted);padding:8px 16px 24px;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;}}
+  #splash{position:fixed;inset:0;z-index:9000;background:linear-gradient(160deg,#1f3327,#3f6b4c 55%,#b5652f);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:13vh;transition:opacity .6s ease}
+  #splash .st{background:rgba(14,30,20,.55);color:#fff;padding:8px 16px;border-radius:16px;text-align:center}
+  #splash .st b{display:block;font-size:20px;letter-spacing:.08em;font-weight:800}
+  #splash .st span{font-size:12px;opacity:.9;letter-spacing:.04em}
+  #splash.hide{opacity:0;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="splash" onclick="this.classList.add('hide')">
+  <div class="st"><b>大槌ジビエ旅</b><span>2026/10/10 → 10/11 ・ 旅のしおり</span></div>
+</div>
+<script>
+  setTimeout(function(){var s=document.getElementById('splash');if(s)s.classList.add('hide');},1800);
+  setTimeout(function(){var s=document.getElementById('splash');if(s)s.style.display='none';},2500);
+</script>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Otsuchi Gibier Trip</p>
+    <h1>大槌ジビエ旅 旅のしおり</h1>
+    <div class="dates">2026/10/10(土) 〜 10/11(日) ・ 大人2名（夫婦） ・ 新幹線＋レンタカー</div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+  <main id="main"></main>
+
+  <footer>🧭タップで経路ナビ／☎電話。チェックは端末に保存。宿は未定＝決まり次第このしおりを差し替えます。</footer>
+</div>
+
+<script>
+(function(){
+  function mapPin(label,q){return {pin:label||'地図', q:q};}
+  function url(q){return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=driving';}
+
+  // ---- itinerary data ----
+  // 一次情報：番頭申し送り_20260926_3/4（暮らし）、ツアー公式ページ otsuchinoasobi.com/archives/gibier/gibier-112（2026-09-29 番頭WebFetch）
+  var days = [
+    {key:'10/10',dow:'土',title:'10/10(土)｜移動＋ジビエ体験1日目',sub:'東京→新花巻→大槌／イントロ〜BBQ',
+     items:[
+      {t:'06:25',cat:'出発',cls:'move',ttl:'家を出る',desc:'家→鶴川駅は約400m＝普段5〜6分・荷物ありで8〜9分と見る。',map:mapPin('鶴川駅','小田急 鶴川駅')},
+      {t:'06:36',cat:'電車',cls:'move',ttl:'鶴川 発（小田急 各駅停車）',desc:'新百合ヶ丘 6:41着→<b>6:42発の快速急行</b>に乗り換え→新宿 7:05着。1人620円（Suica）。<br>乗り遅れたら＝次の6:58発（新百合ヶ丘7:10→新宿7:34→東京7:54）でもまだ間に合う。時刻は乗換案内の調べ＝数日前に小田急公式で確かめ直す。'},
+      {t:'07:11',cat:'電車',cls:'move',ttl:'新宿 発（JR中央線 特別快速）',desc:'東京駅 7:25着。'},
+      {t:'07:25〜08:10',cat:'駅弁',cls:'eat',ttl:'東京駅で駅弁を買う（駅弁屋 祭）',desc:'5:30から開いている。「駅弁屋 祭 セレクト 新幹線南のりかえ口」店が東北新幹線の南のりかえ口の目の前＝中央線ホームから中央通路を通ってそのまま行ける。土曜の朝は列ができることがある＝余裕を45分取った。',map:mapPin('駅弁屋 祭','駅弁屋 祭 グランスタ東京')},
+      {t:'08:15',cat:'並ぶ',cls:'move',ttl:'新幹線ホームの自由席の列に並ぶ',desc:'やまびこ53号は東京始発＝30分前に並べば2人並んで座れる見込み。'},
+      {t:'08:45',cat:'新幹線',cls:'move',ttl:'東京駅 発／やまびこ53号（自由席）',desc:'東京始発＝30分前に並べば座れる見込み。予約済（新幹線eチケット・大人2名）。Suicaで改札を通る。',map:mapPin('東京駅','東京駅')},
+      {t:'11:53',cat:'到着',cls:'move',ttl:'新花巻駅 着'},
+      {t:'12:00',cat:'レンタカー',cls:'move',ttl:'トヨタレンタカー 新花巻駅西口店（受取）',desc:'予約済（C1クラス・安心Wプラン）／店頭で支払い（VISAで5%引き）／10/10 12:00〜10/11 13:00。',tel:'0198-31-2100',map:mapPin('新花巻駅西口','新花巻駅 西口')},
+      {t:'〜13:40',cat:'移動',cls:'move',ttl:'新花巻 → 大槌（約1時間20分）',desc:'昼食は道中で（未確定・現地判断）。'},
+      {t:'14:00',cat:'集合',cls:'tour',ttl:'大槌文化交流センター おしゃっち（集合・イントロダクション）',desc:'〒028-1117 岩手県上閉伊郡大槌町末広町1-15。長袖・長ズボン、動きやすい靴（長靴推奨）、音の出ない服装。',map:mapPin('大槌文化交流センター おしゃっち','大槌文化交流センター おしゃっち 岩手県上閉伊郡大槌町末広町1-15')},
+      {t:'14:30',cat:'体験',cls:'hunt',ttl:'MOMIJI加工場 見学'},
+      {t:'16:30',cat:'食事',cls:'eat',ttl:'大槌鹿と海の幸のBBQ',desc:'酒は料金に含まれない（別）。'},
+      {t:'19:00',cat:'終了',cls:'tour',ttl:'1日目 終了'},
+      {t:'19:30頃',cat:'宿',cls:'pending',ttl:'⬜ 宿へチェックイン（未定）',desc:'宿はまだ決まっていない。候補＝柿栗館（朝食付）。ツアー側から届く周辺の宿の案内と比べて決める＝決まったらこの欄を差し替える。'}
+     ]},
+    {key:'10/11',dow:'日',title:'10/11(日)｜狩猟同行・解体体験→帰宅',sub:'早朝集合／11:00終了→新花巻→東京',
+     items:[
+      {t:'04:30頃',cat:'出発',cls:'pending',ttl:'宿 発',desc:'5:00の加工場集合に合わせて4時半ごろ出る想定（やどSachiへの問い合わせ文より＝実際の宿が決まったら移動時間を引き直す）。'},
+      {t:'05:00',cat:'集合',cls:'hunt',ttl:'MOMIJI加工場 集合'},
+      {t:'05:30',cat:'体験',cls:'hunt',ttl:'狩猟同行'},
+      {t:'09:00',cat:'体験',cls:'hunt',ttl:'解体体験'},
+      {t:'11:00',cat:'終了',cls:'tour',ttl:'ツアー終了'},
+      {t:'〜12:20',cat:'移動',cls:'move',ttl:'大槌 → 新花巻（約1時間20分）'},
+      {t:'12:30',cat:'返却',cls:'move',ttl:'トヨタレンタカー 新花巻駅西口店（返却）',desc:'予約は13:00まで＝早めに返して昼へ。給油の条件は予約規約を確認。',tel:'0198-31-2100',map:mapPin('新花巻駅西口','新花巻駅 西口')},
+      {t:'12:40〜14:00',cat:'昼食',cls:'eat',ttl:'山猫軒 新花巻駅前店（銀河プラザ）',desc:'駅の真向かい・徒歩3分・日曜も営業（10:00〜16時台）。花巻の名物＝<b>わんこそば</b>（1,800〜3,300円）と、花巻のブランド豚<b>白金豚のカツカレー</b>（1,500円）。郷土の汁物ひっつみも。電話予約可。予備＝駅構内1Fのそば処イーハトーブの里（白金豚チャーシューの釜石ラーメン）。',tel:'0198-31-2013',map:mapPin('山猫軒 新花巻駅前店','山猫軒 新花巻駅前店')},
+      {t:'14:20',cat:'新幹線',cls:'move',ttl:'新花巻駅 発／やまびこ60号（指定席）',desc:'予約済。8号車5番D・E（2列席・E席が窓側）。',map:mapPin('新花巻駅','新花巻駅')},
+      {t:'17:24',cat:'到着',cls:'move',ttl:'東京駅 着（帰宅）'}
+     ]},
+    {key:'持ち物',dow:'準備',title:'持ち物・確認事項',sub:'準備はこのタブに集約。チェックは端末に保存されます',block:'prep'}
+   ];
+
+  // ---- reference ----
+  var ref = [
+    {ttl:'新幹線（往復・確定）',rows:[
+      '行き：<b>10/10 やまびこ53号 東京8:45→新花巻11:53</b>・自由席・大人2・予約済',
+      '帰り：<b>10/11 やまびこ60号 新花巻14:20→東京17:24</b>・8号車5番D・E・予約済',
+      'Suicaで改札を通る（E席が窓側）'
+    ]},
+    {ttl:'レンタカー（確定）',rows:[
+      'トヨタレンタカー 新花巻駅西口店（TEL 0198-31-2100・花巻市胡四王1-3-1）',
+      '<b>10/10 12:00 受取 〜 10/11 13:00 返却</b>',
+      'C1クラス・安心Wプラン・店頭払い（VISAで5%引き）・予約済'
+    ]},
+    {ttl:'ジビエツアー（確定）',rows:[
+      '大槌鹿・解体体験ツアー（otsuchinoasobi.com）',
+      '集合：大槌文化交流センター おしゃっち（10/10 14:00）',
+      '1日目＝イントロ14:00→加工場見学14:30→BBQ16:30→終了19:00',
+      '2日目＝加工場集合5:00→狩猟同行5:30→解体体験9:00→終了11:00',
+      '大人2名・予約済・キャンセル料＝前々日20%／前日50%／当日100%'
+    ],link:'https://otsuchinoasobi.com/archives/gibier/gibier-112',linkLabel:'ツアー詳細ページ'},
+    {ttl:'⬜ 宿（未定）',rows:[
+      'やどSachi＝満室',
+      '候補：柿栗館（朝食付）',
+      'ツアー側から周辺の宿の案内が届く予定＝届いたら比べて決める'
+    ]}
+   ];
+
+  // ---- checklists ----
+  var lists = [
+    {id:'pack',title:'持ち物（1泊2日・野外体験）',items:[
+      '免許証・身分証・現金・クレカ','スマホ・充電器・モバイルバッテリー',
+      '新幹線eチケット控え・Suica','長袖・長ズボン','動きやすい靴（長靴推奨）',
+      '音の出ない服装（ツアー公式の指定）','防寒着（10月早朝の岩手は冷える）',
+      '軍手・タオル','汚れてもよい着替え（解体体験用）','雨具（念のため）','酔い止め（長距離移動）',
+      'ナイロンなど音が出る服は避ける（ツアー公式）','早朝の山の上は最低気温より約6℃低い＝厚手の上着',
+      '保冷バッグ・保冷剤（鹿が捕れたら肉1〜3kgを持ち帰れる＝ツアー公式）'
+    ]},
+    {id:'ask',title:'☎宿が決まったら聞くこと',items:[
+      '10/10 19:30頃のチェックインで大丈夫か',
+      '10/11 4:30頃の早朝出発で大丈夫か（鍵の受け渡し・精算方法）',
+      '駐車場の有無（レンタカーで向かう）',
+      '朝食の要否（5:00集合のため出発前は食べられない見込み）'
+    ]},
+    {id:'todo',title:'要確認・予約',items:[
+      '宿の決定（柿栗館 or ツアー側の案内）→予約',
+      'ツアー申込みの最終確認（人数・支払い方法）',
+      '雨の日＝悪天候なら内容の一部変更か中止がある（ツアー公式）＝前日に主催者へ確認',
+      '肉＝捕れたら1〜3kg（約1.5万円分）持ち帰り・捕れなければ用意した鹿で解体（ツアー公式）',
+      '服装・持ち物の細かい所を主催者に聞く（長靴が無い時・肉の持ち帰り方）'
+    ]}
+   ];
+
+  // ---- render ----
+  function itemHTML(it){
+    var cls='item '+(it.cls||'move');
+    var pin = it.map ? '<a class="pin" target="_blank" rel="noopener" href="'+url(it.map.q)+'">🧭 '+it.map.pin+'</a>' : '';
+    var tel = it.tel ? '<a class="tel" href="tel:'+it.tel.replace(/[^0-9]/g,'')+'">☎ '+it.tel+'</a>' : '';
+    var lnk = it.link ? '<a class="link" target="_blank" rel="noopener" href="'+it.link+'">🎫 '+(it.linkLabel||'詳細ページ')+'</a>' : '';
+    var row = (pin||tel||lnk) ? '<div class="row">'+lnk+pin+tel+'</div>' : '';
+    var desc = it.desc ? '<p class="desc'+(it.cat==='要注意'?' warn':'')+'">'+it.desc+'</p>' : '';
+    return '<div class="'+cls+'"><div class="cat">'+(it.cat||'')+'</div>'+
+      '<div class="top"><div class="time">'+it.t+'</div><div class="ttl">'+it.ttl+'</div></div>'+
+      desc+row+'</div>';
+  }
+
+  var tabs=document.getElementById('tabs'), main=document.getElementById('main');
+  days.forEach(function(d,i){
+    var btn=document.createElement('button');
+    btn.className='tab'+(i===0?' active':'');
+    btn.innerHTML=d.key+'<small>'+d.dow+'</small>';
+    btn.onclick=function(){
+      document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+      document.querySelectorAll('.day').forEach(function(s){s.classList.remove('active');});
+      btn.classList.add('active');
+      document.getElementById('day'+i).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    };
+    tabs.appendChild(btn);
+
+    var sec=document.createElement('section');
+    sec.className='day'+(i===0?' active':'');
+    sec.id='day'+i;
+    var html='<div class="dayhead"><h2>'+d.title+'</h2><p>'+d.sub+'</p></div>';
+    if(d.block==='prep'){
+      html+='<div class="lists"><h3>チェックリスト</h3><div id="lists"></div></div>';
+      html+='<div class="ref"><h3>まとめ・確定事項</h3>'+ref.map(function(r){
+        var pin=r.map?'<a class="pin" target="_blank" rel="noopener" href="'+url(r.map.q)+'">🧭 '+r.map.pin+'</a>':'';
+        var tel=r.tel?'<a class="tel" href="tel:'+r.tel.replace(/[^0-9]/g,'')+'">☎ '+r.tel+'</a>':'';
+        var lnk=r.link?'<a class="link" target="_blank" rel="noopener" href="'+r.link+'">🎫 '+(r.linkLabel||'詳細ページ')+'</a>':'';
+        var rowsHtml=r.rows.map(function(x){return '<div class="kv">'+x+'</div>';}).join('');
+        var foot=(pin||tel||lnk)?'<div class="row">'+lnk+pin+tel+'</div>':'';
+        return '<div class="item"><div class="ttl">'+r.ttl+'</div>'+rowsHtml+foot+'</div>';
+      }).join('')+'</div>';
+    } else {
+      if(d.key==='10/10'){
+        html+='<div class="note-flex pending"><b>⬜宿は未定です。</b>柿栗館が候補。ツアー側の案内と比べて決まり次第、このしおりを差し替えます。</div>';
+      }
+      html+=d.items.map(itemHTML).join('');
+    }
+    sec.innerHTML=html;
+    main.appendChild(sec);
+  });
+
+  // ---- checklists with localStorage ----
+  var KEY='otsuchi_gibier_checks_v1';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}');}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+  var state=load();
+  var host=document.getElementById('lists');
+  if(host){
+    lists.forEach(function(L){
+      var box=document.createElement('div');box.className='check';
+      var total=L.items.length, done=L.items.filter(function(_,j){return state[L.id+'_'+j];}).length;
+      box.innerHTML='<h4>'+L.title+'<span class="cnt" id="cnt_'+L.id+'">'+done+' / '+total+'</span></h4>';
+      var ul=document.createElement('ul');
+      L.items.forEach(function(label,j){
+        var id=L.id+'_'+j;
+        var li=document.createElement('li');
+        var checked=state[id]?'checked':'';
+        li.innerHTML='<label><input type="checkbox" '+checked+' data-id="'+id+'"><span>'+label+'</span></label>';
+        ul.appendChild(li);
+      });
+      box.appendChild(ul);
+      host.appendChild(box);
+      var rb=document.createElement('button');rb.className='reset';rb.textContent='「'+L.title+'」のチェックを全部外す';
+      rb.onclick=function(){
+        L.items.forEach(function(_,j){delete state[L.id+'_'+j];});
+        save(state);
+        box.querySelectorAll('input').forEach(function(c){c.checked=false;c.parentElement.querySelector('span').style.color='';});
+        updateCnt(L);
+      };
+      host.appendChild(rb);
+    });
+    host.addEventListener('change',function(e){
+      var c=e.target; if(c.type!=='checkbox')return;
+      state[c.getAttribute('data-id')]=c.checked; save(state);
+      var lid=c.getAttribute('data-id').split('_')[0];
+      var L=lists.filter(function(x){return x.id===lid;})[0]; updateCnt(L);
+    });
+  }
+  function updateCnt(L){
+    var total=L.items.length, done=L.items.filter(function(_,j){return state[L.id+'_'+j];}).length;
+    var el=document.getElementById('cnt_'+L.id); if(el)el.textContent=done+' / '+total;
+  }
+})();
+</script>
+</body>
+</html>
