@@ -1,336 +1,248 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="description" content="11月6日から9日までの大分旅行を、空き時間と候補から組み立てる夫婦の旅のしおりです。">
-  <meta name="theme-color" content="#21384f">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="color-scheme" content="light">
-  <meta name="supported-color-schemes" content="light">
-  <meta property="og:title" content="大分 旅のしおり｜11月6日〜9日">
-  <meta property="og:description" content="確定予定と空き時間を見ながら、昼・コーヒー・自然散策をその場で選べる旅のしおりです。">
-  <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
-  <meta property="og:url" content="oita_trip.html">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
-  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E">
-  <title>大分 旅のしおり｜11月6日〜9日</title>
-  <style>
-    :root{--paper:#f4efe2;--paper-deep:#efe7d6;--ink:#21384f;--ink-soft:#3c5670;--gold:#bb9a66;--gold-dark:#9a7b3c;--line:#ded4be;--muted:#3c5670;--danger:#b83b32;--shadow:0 8px 24px rgba(33,56,79,.10)}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;background:var(--paper)}
-    body{margin:0;color:var(--ink);background:var(--paper);font-family:"Shippori Mincho",serif;font-feature-settings:"palt";font-kerning:normal;line-height:1.75;overflow-x:hidden}
-    button,a,select,input{font:inherit}
-    button,a{-webkit-tap-highlight-color:transparent}
-    a{color:var(--ink-soft);text-decoration-thickness:1px;text-underline-offset:3px}
-    a:visited{color:var(--muted)}
-    .en{font-family:"Cormorant Garamond",serif;font-size:1.16em;font-variant-numeric:lining-nums}
-    .app{width:min(100%,560px);margin:0 auto;min-height:100vh;background:var(--paper)}
-    header{padding:24px 20px 18px;background:var(--ink);color:var(--paper)}
-    .eyebrow{margin:0 0 4px;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:.08em}
-    h1{margin:0;font-size:28px;line-height:1.35;font-weight:700}
-    .subtitle{margin:8px 0 0;font-size:14px;color:var(--paper-deep)}
-    .updated{margin:12px 0 0;font-size:11px;color:var(--gold)}
-    .tabs{position:sticky;top:0;z-index:20;display:flex;gap:0;overflow-x:auto;background:var(--paper);border-bottom:1px solid var(--line);scrollbar-width:none}
-    .tabs::-webkit-scrollbar{display:none}
-    .tab{flex:0 0 auto;min-width:72px;padding:13px 14px;border:0;border-bottom:3px solid transparent;background:var(--paper);color:var(--muted);font-weight:700;cursor:pointer}
-    .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold)}
-    .panel{display:none;padding:20px 16px 72px}
-    .panel.active{display:block}
-    h2{margin:4px 0 8px;font-size:22px;line-height:1.45}
-    h3{margin:0;font-size:17px;line-height:1.5}
-    h4{margin:0;font-size:15px}
-    p{margin:6px 0}
-    :where(p,.band-body,.result-line,.warning,footer){word-break:auto-phrase;text-wrap:pretty}
-    .lead{color:var(--ink-soft);font-size:14px;margin-bottom:18px}
-    .notice,.warning,.late,.ok{margin:16px 0;padding:14px 16px;border-left:4px solid var(--gold);background:var(--paper-deep);font-size:13px}
-    .warning,.late{border-left-color:var(--danger);color:var(--danger);font-weight:700}
-    .ok{border-left-color:var(--gold-dark);color:var(--ink)}
-    .mini{font-size:12px;color:var(--muted)}
-    .source-note{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
-    .overview-days{display:grid;gap:12px}
-    .overview-day{border:1px solid var(--line);border-left:6px solid var(--ink);background:var(--paper);box-shadow:var(--shadow)}
-    .overview-day:nth-child(2){border-left-color:var(--gold-dark)}
-    .overview-day:nth-child(3){border-left-color:var(--gold)}
-    .overview-day:nth-child(4){border-left-color:var(--ink-soft)}
-    .overview-head{display:flex;align-items:baseline;gap:10px;padding:14px 16px 10px}
-    .overview-head .date{font-size:20px;font-weight:700}
-    .overview-head .theme{font-size:12px;color:var(--muted)}
-    .band{display:grid;gap:1px;padding:0 16px 16px}
-    .band-row{display:grid;grid-template-columns:96px 1fr;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
-    .band-time{font-family:"Cormorant Garamond",serif;font-size:15px;font-weight:700;font-variant-numeric:lining-nums;white-space:nowrap}
-    .band-body{font-size:13px}
-    .band-body strong{display:block}
-    .free{margin-top:3px;color:var(--ink);font-weight:700}
-    .fixed{color:var(--ink)}
-    .result-line{margin-top:8px;padding:8px 10px;background:var(--paper-deep);font-size:12px}
-    .day-summary{margin:0 0 18px;padding:14px 16px;border:1px solid var(--line);background:var(--paper-deep)}
-    .day-summary strong{display:block}
-    .schedule{margin:16px 0 24px;border-left:2px solid var(--gold)}
-    .event{position:relative;margin-left:14px;padding:0 0 18px 18px}
-    .event::before{content:"";position:absolute;left:-7px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--paper)}
-    .event-time{font-family:"Cormorant Garamond",serif;font-size:17px;font-weight:700;font-variant-numeric:lining-nums}
-    .event-title{font-weight:700}
-    .event-meta{font-size:12px;color:var(--muted)}
-    .section-title{margin:28px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
-    .choice-group{margin:24px 0 32px}
-    .group-intro{font-size:12px;color:var(--muted);margin-bottom:10px}
-    .cards{display:grid;gap:12px}
-    .choice-card{border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow);padding:16px}
-    .choice-card.selected{border:2px solid var(--gold-dark);padding:15px;background:var(--paper-deep)}
-    .choice-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-    .star{color:var(--ink);font-weight:700;white-space:nowrap;font-size:12px}
-    .facts{display:grid;gap:5px;margin:12px 0;font-size:12px}
-    .facts dt{font-weight:700;color:var(--muted)}
-    .facts dd{margin:0}
-    .facts>div{display:grid;grid-template-columns:78px 1fr;gap:8px}
-    .reason{margin:12px 0;padding:10px 12px;border-left:3px solid var(--gold);background:var(--paper-deep);font-size:13px}
-    .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 13px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;font-size:13px;cursor:pointer}
-    .btn:visited{color:var(--ink)}
-    .btn:disabled{opacity:.5;cursor:not-allowed}
-    .btn-primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-    .btn-primary:visited{color:var(--paper)}
-    .choice-card.selected .select-btn{background:var(--gold-dark);border-color:var(--gold-dark);color:var(--paper)}
-    .route-box{margin:12px 0;padding:12px;border:1px solid var(--line);font-size:12px}
-    .route-box strong{display:block;margin-bottom:4px}
-    .phone-list{display:grid;gap:8px;margin:16px 0}
-    .phone-row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-    .phone-row span{font-size:12px;color:var(--muted)}
-    .riding-price{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
-    .riding-price th,.riding-price td{padding:8px 6px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-    .riding-price th{color:var(--muted)}
-    .control{margin:14px 0;padding:14px;background:var(--paper-deep)}
-    .control label{display:block;margin-bottom:6px;font-weight:700}
-    select{width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--ink-soft);background:var(--paper);color:var(--ink)}
-    .checklist{display:grid;gap:10px}
-    .check{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;padding:12px;border:1px solid var(--line);background:var(--paper)}
-    .check input{width:20px;height:20px;accent-color:var(--ink);margin:2px 0 0}
-    .check label{cursor:pointer}
-    .check small{display:block;color:var(--muted);margin-top:3px}
-    .legend{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 18px;font-size:11px;color:var(--muted)}
-    .legend span::before{content:"";display:inline-block;width:10px;height:10px;margin-right:5px;vertical-align:-1px;background:var(--ink)}
-    .legend .l-free::before{background:var(--gold)}
-    .legend .l-select::before{background:var(--gold-dark)}
-    .nowrap{white-space:nowrap}
-    footer{padding:20px 16px 32px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
-    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-    @media (max-width:390px){header{padding-inline:16px}h1{font-size:25px}.panel{padding-inline:12px}.band-row{grid-template-columns:92px 1fr}.choice-card{padding:14px}.choice-card.selected{padding:13px}.facts>div{grid-template-columns:72px 1fr}.btn{flex:1 1 42%}}
-    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2026年11月6日から9日までの大分旅行のしおり。紅葉と自然、宿、移動予定を日別に確認できます。">
+<meta name="robots" content="noindex,nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="大分旅のしおり">
+<meta name="theme-color" content="#3f6f57">
+<meta property="og:title" content="大分・紅葉旅 旅のしおり">
+<meta property="og:description" content="紅葉と自然を楽しむ大分旅行の日別しおり">
+<meta property="og:type" content="website">
+<meta property="og:image" content="hero.jpg">
+<meta property="og:url" content="oita_trip.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>大分・紅葉旅 旅のしおり</title>
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="icon" href="favicon.ico">
+<style>
+  :root{
+    --mountain:#3f6f57;
+    --mountain2:#56806a;
+    --lake:#367589;
+    --sky:#e89a65;
+    --momiji:#c85a3f;
+    --ginkgo:#d7a83f;
+    --paper:#f7f3e9;
+    --card:#fff;
+    --ink:#22312c;
+    --muted:#5d6a64;
+    --line:#e4ddcf;
+    --ok:#2f7658;
+    --warn:#9d4738;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;
+    background:var(--paper);color:var(--ink);line-height:1.65;-webkit-text-size-adjust:100%;padding-bottom:40px;
+  }
+  .wrap{max-width:560px;margin:0 auto}
+  .nowrap{white-space:nowrap}
+  header{background:linear-gradient(145deg,var(--mountain),var(--lake));color:#fff;padding:18px 18px 14px;padding-top:max(18px,env(safe-area-inset-top))}
+  header .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.85;margin:0 0 4px}
+  header h1{font-size:21px;margin:0;font-weight:800;letter-spacing:.01em}
+  header .dates{font-size:12.5px;opacity:.9;margin-top:3px}
+  .tabs{position:sticky;top:0;z-index:20;background:var(--mountain);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-top:env(safe-area-inset-top,0)}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;padding:11px 14px;color:#d8e6df;font-size:13px;font-weight:700;background:none;border:0;border-bottom:3px solid transparent;white-space:nowrap;font-family:inherit;cursor:pointer}
+  .tab small{display:block;font-size:10px;font-weight:600;opacity:.75;letter-spacing:.04em}
+  .tab.active{color:#fff;border-bottom-color:var(--ginkgo)}
+  main{padding:14px 14px 0}
+  .day{display:none}
+  .day.active{display:block;animation:fade .18s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .dayhead{margin:4px 2px 12px}
+  .dayhead h2{margin:0;font-size:18px;font-weight:800}
+  .dayhead p{margin:3px 0 0;font-size:12.5px;color:var(--muted)}
+  .note{background:#fff8e8;border:1px solid #efdcae;border-radius:12px;padding:10px 12px;font-size:12.5px;color:#725819;margin:0 2px 14px}
+  .note strong{color:#795d15}
+  .note.alert{background:#fff0ec;border-color:#edc9bf;color:#843d30}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin:0 2px 10px;position:relative;overflow:hidden}
+  .item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--mountain)}
+  .item.move:before{background:var(--lake)}
+  .item.eat:before{background:var(--momiji)}
+  .item.see:before{background:var(--ginkgo)}
+  .item.fly:before{background:var(--sky)}
+  .item.stay:before{background:#7668a3}
+  .item.warn:before{background:var(--warn)}
+  .item .top{display:flex;align-items:baseline;gap:9px}
+  .time{font-size:13px;font-weight:800;color:var(--mountain);font-variant-numeric:tabular-nums;flex:0 0 auto;min-width:58px}
+  .item.move .time{color:var(--lake)}
+  .item.eat .time{color:var(--momiji)}
+  .item.see .time{color:#9a711b}
+  .item.fly .time{color:#a95435}
+  .ttl{font-size:14.5px;font-weight:750}
+  .cat{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
+  .desc{font-size:12.5px;color:#4d5b55;margin:5px 0 0}
+  .desc.alert{color:var(--warn);font-weight:700}
+  .row{margin-top:8px;display:flex;flex-wrap:wrap;gap:7px}
+  a.pin,a.link{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;text-decoration:none;padding:5px 10px;border-radius:999px;border:1px solid var(--line)}
+  a.pin{color:#285e70;background:#eef6f8;border-color:#d3e7ec}
+  a.link{color:#665092;background:#f4eff9;border-color:#e1d8ec}
+  a.pin:active,a.link:active{transform:scale(.97)}
+  .section-title{font-size:13px;letter-spacing:.05em;color:var(--muted);margin:18px 4px 8px;font-weight:800}
+  .branch{border:1px solid var(--line);border-radius:16px;background:#efeade;padding:11px 9px 3px;margin:0 2px 12px}
+  .branch-title{display:flex;align-items:center;gap:8px;margin:0 3px 9px;font-size:13px;font-weight:800}
+  .pill{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;letter-spacing:.04em;background:#e2f0e8;color:#2f6947}
+  .pill.fly{background:#fde9df;color:#945037}
+  .choice{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 11px;margin-bottom:8px}
+  .choice h4{font-size:13.5px;margin:0;font-weight:800}
+  .choice p{font-size:12.3px;color:#4d5b55;margin:5px 0 0}
+  .choice .measure{color:#2b6575;font-weight:700}
+  .choice .status{color:#8a6418;font-weight:700}
+  .overview-grid{display:grid;gap:10px}
+  .overview-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 13px}
+  .overview-card h3{margin:0 0 7px;font-size:14px;display:flex;gap:8px;align-items:center}
+  .overview-card h3 span{font-size:10.5px;color:#fff;background:var(--mountain);border-radius:999px;padding:3px 8px;white-space:nowrap}
+  .overview-card p{margin:0;font-size:12.5px;color:#4d5b55}
+  .overview-card .arrow{color:var(--lake);font-weight:800;padding:0 2px}
+  .check{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:0 2px 12px;overflow:hidden}
+  .check h3{margin:0;padding:12px 13px;font-size:14px;font-weight:800;background:#f0ece1;display:flex;justify-content:space-between;align-items:center}
+  .check h3 .cnt{font-size:11px;color:var(--muted);font-weight:700}
+  .check ul{list-style:none;margin:0;padding:4px 0 6px}
+  .check label{display:flex;gap:11px;align-items:flex-start;padding:8px 13px;font-size:13.5px;cursor:pointer}
+  .check input{appearance:none;-webkit-appearance:none;width:21px;height:21px;flex:0 0 auto;margin-top:1px;border:2px solid #c7cdc9;border-radius:6px;position:relative;background:#fff}
+  .check input:checked{background:var(--ok);border-color:var(--ok)}
+  .check input:checked:after{content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+  .check input:checked + span{color:#929d98;text-decoration:line-through}
+  .reset{display:block;margin:0 2px 24px;width:calc(100% - 4px);background:none;border:1px dashed var(--line);color:var(--muted);font-size:12px;font-weight:700;padding:9px;border-radius:12px;font-family:inherit;cursor:pointer}
+  footer{text-align:center;font-size:11px;color:var(--muted);padding:8px 16px 24px}
+  #splash{position:fixed;inset:0;z-index:9000;background:#ead9ba url('hero.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:0 18px 13vh;transition:opacity .6s ease}
+  #splash .st{background:rgba(42,79,61,.82);color:#fff;padding:11px 20px;border-radius:13px;text-align:center;box-shadow:0 8px 24px rgba(34,49,44,.22)}
+  #splash .st b{display:block;font-size:20px;letter-spacing:.06em;font-weight:800}
+  #splash .st span{font-size:12px;opacity:.92;letter-spacing:.03em}
+  #splash.hide{opacity:0;pointer-events:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-<div class="app">
-  <header>
-    <p class="eyebrow">夫婦で選ぶ、4日間</p>
-    <h1>大分 旅のしおり</h1>
-    <p class="subtitle"><span class="en">2026.11.6</span> 金 — <span class="en">11.9</span> 月</p>
-    <p class="updated">候補・経路の確認：2026年11月3日</p>
-  </header>
-
-  <nav class="tabs" aria-label="しおりのページ" role="tablist">
-    <button class="tab" role="tab" aria-selected="true" aria-controls="overview" id="tab-overview" data-tab="overview">全体</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="day6" id="tab-day6" data-tab="day6">11/6</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="day7" id="tab-day7" data-tab="day7">11/7</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="day8" id="tab-day8" data-tab="day8">11/8</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="day9" id="tab-day9" data-tab="day9">11/9</button>
-    <button class="tab" role="tab" aria-selected="false" aria-controls="check" id="tab-check" data-tab="check">準備</button>
-  </nav>
-
-  <main>
-    <section class="panel active" id="overview" role="tabpanel" aria-labelledby="tab-overview">
-      <h2>まず、4日間の全体像</h2>
-      <p class="lead">前泊か当日朝かはまだ決めず、現地の3日間を夫婦で選べる形にしました。11/7と11/8は候補を選ぶと、概算の到着時刻まで変わります。</p>
-      <div class="legend"><span>確定予定</span><span class="l-free">空き・選ぶ時間</span><span class="l-select">選択中</span></div>
-      <div class="overview-days">
-        <article class="overview-day">
-          <div class="overview-head"><span class="date en">11/6 金</span><span class="theme">前泊は予約済み・使うかは未決定</span></div>
-          <div class="band">
-            <div class="band-row"><div class="band-time">10:00–11:00</div><div class="band-body"><strong>オンライン会議</strong></div></div>
-            <div class="band-row"><div class="band-time">未決定</div><div class="band-body"><strong class="free">前泊／当日朝を夫婦で選ぶ</strong>東横INNは予約済みだが、前泊必須とはしない。当日朝案は11/7タブに参考表示。</div></div>
-          </div>
-        </article>
-        <article class="overview-day">
-          <div class="overview-head"><span class="date en">11/7 土</span><span class="theme">国東の海の幸・六郷満山・滝</span></div>
-          <div class="band">
-            <div class="band-row"><div class="band-time">8:00–10:30</div><div class="band-body"><strong>成田→大分、レンタカー受取</strong></div></div>
-            <div class="band-row"><div class="band-time">10:30–17:00頃</div><div class="band-body"><strong class="free">銀たちの郷→両子寺→東椎屋の滝</strong>疲れや混雑時は両子寺を省く。太閤の少量味見とKURUは任意。<div class="result-line" id="overview-result7">候補を選ぶと到着時刻を概算します。</div></div></div>
-            <div class="band-row"><div class="band-time">17:00前後</div><div class="band-body"><strong>料亭やまさ旅館</strong>夕食開始時刻は確認が必要。17時過ぎを無条件に可としない。</div></div>
-          </div>
-        </article>
-        <article class="overview-day">
-          <div class="overview-head"><span class="date en">11/8 日</span><span class="theme">タデ原を軸に、高原の自然を1つ選ぶ</span></div>
-          <div class="band">
-            <div class="band-row"><div class="band-time">9:00–10:00頃</div><div class="band-body"><strong>やまさ出発</strong>出発時刻は朝食と当日の体調で決める。</div></div>
-            <div class="band-row"><div class="band-time">日中</div><div class="band-body"><strong class="free">タデ原40〜60分＋1つだけ</strong>大吊橋／沓掛山／乗馬／雨天温泉から選ぶ。詰め込まない。<div class="result-line" id="overview-result8">候補を選ぶと山城屋到着を概算します。</div></div></div>
-            <div class="band-row"><div class="band-time">16:30–17:00目安</div><div class="band-body"><strong>旅館 山城屋</strong>湯平石畳と貸切温泉。18時は到着枠上限で、夕食開始時刻は別確認。</div></div>
-          </div>
-        </article>
-        <article class="overview-day">
-          <div class="overview-head"><span class="date en">11/9 月</span><span class="theme">帰宅後、オンライン会議</span></div>
-          <div class="band">
-            <div class="band-row"><div class="band-time">7:30–9:00目安</div><div class="band-body"><strong>山城屋→給油→返却</strong>返却9時を目標。10時の返却枠を安全到着時刻にしない。</div></div>
-            <div class="band-row"><div class="band-time">10:35–12:10</div><div class="band-body"><strong>大分→成田</strong>GK608。</div></div>
-            <div class="band-row"><div class="band-time">13:00–15:30</div><div class="band-body"><strong>成田空港→家 約150分</strong>最寄り駅15:30着の乗換実測。家着は15:30以降。</div></div>
-            <div class="band-row"><div class="band-time">16:00</div><div class="band-body"><strong>オンライン会議</strong><span class="warning" style="display:block;margin:8px 0 0">最寄り駅着から30分。<span class="nowrap">駅→家と飛行機到着後の</span><span class="nowrap">移動時間は未確認です。</span></span></div></div>
-          </div>
-        </article>
-      </div>
-      <p class="source-note">表示する車時間は概算です。渋滞・駐車・当日の運行変更は含みません。営業時間・天候条件は各カードの公式リンクで再確認してください。</p>
-    </section>
-
-    <section class="panel" id="day6" role="tabpanel" aria-labelledby="tab-day6" hidden>
-      <h2>11/6 金｜前泊を使うかは未決定</h2>
-      <div class="day-summary"><strong>この日の要点</strong>東横INNは予約済みですが、前泊必須とはしません。11/7当日朝案と比べて夫婦で決めます。</div>
-      <div class="schedule">
-        <div class="event"><div class="event-time">10:00–11:00</div><div class="event-title">オンライン会議</div></div>
-        <div class="event"><div class="event-time">会議後</div><div class="event-title">旅支度・移動方法を決定</div><div class="event-meta">予約の取消・変更はこのアプリでは行いません。</div></div>
-        <div class="event"><div class="event-time">前泊を選ぶ場合</div><div class="event-title">東横INN成田空港本館</div><div class="event-meta">予約済み。送迎・チェックイン時刻は予約内容で再確認。</div></div>
-      </div>
-      <div class="links"><a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=%E6%9D%B1%E6%A8%AAINN%E6%88%90%E7%94%B0%E7%A9%BA%E6%B8%AF%E6%9C%AC%E9%A4%A8" target="_blank" rel="noopener">経路ナビ</a><a class="btn" href="tel:0476330451">ホテルへ電話</a></div>
-    </section>
-
-    <section class="panel" id="day7" role="tabpanel" aria-labelledby="tab-day7" hidden>
-      <h2>11/7 土｜国東の海・森・滝</h2>
-      <div class="warning"><strong>朝はまだ決めない</strong><br>当日朝の参考案：5:00自宅発、鶴川5:17→新宿5:51、山手線5:59→日暮里6:20、スカイライナー5号6:25→空港第2ビル7:03。1人3,200円・2人6,400円。日暮里は5分接続で余裕が小さく、第2ビル改札からT3案内カウンターまで徒歩約13分（ホーム・手続き場までの移動は別）。GK609は受付・預け荷物7:30、搭乗7:45締切。保安検査1時間前は目安です。</div>
-      <div class="schedule" id="schedule7" aria-live="polite"></div>
-      <div id="arrival7" aria-live="polite"></div>
-      <div id="choices7"></div>
-      <h3 class="section-title">経路ナビ・電話</h3>
-      <div class="links"><a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E3%83%AC%E3%83%B3%E3%82%BF%E3%82%AB%E3%83%BC%E5%A4%A7%E5%88%86%E7%A9%BA%E6%B8%AF%E6%AD%A6%E8%94%B5%E7%94%BA%E7%B3%B8%E5%8E%9F%E5%BA%97" target="_blank" rel="noopener">空港→レンタカー</a><a class="btn" href="tel:0978974108">送迎を電話</a><a class="btn" href="tel:0120393803">やまさへ電話</a></div>
-    </section>
-
-    <section class="panel" id="day8" role="tabpanel" aria-labelledby="tab-day8" hidden>
-      <h2>11/8 日｜タデ原＋高原の自然を1つ</h2>
-      <div class="notice"><strong>乗馬は任意・空き未確認</strong><br>奥さまの希望を確認してから。選ぶ場合は大吊橋／登山の代替にし、同日に詰め込みません。</div>
-      <div class="schedule" id="schedule8" aria-live="polite"></div>
-      <div id="arrival8" aria-live="polite"></div>
-      <div id="choices8"></div>
-      <p class="mini">雨天は長者原ビジターセンターから山城屋へ進み、温泉時間を長くします。</p>
-      <div class="links"><a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=%E3%82%A8%E3%83%AB%E3%83%BB%E3%83%A9%E3%83%B3%E3%83%81%E3%83%A7%E3%83%BB%E3%82%B0%E3%83%A9%E3%83%B3%E3%83%87" target="_blank" rel="noopener">乗馬へナビ</a><a class="btn" href="tel:0973792217">乗馬へ電話</a><a class="btn" href="tel:0977862462">山城屋へ電話</a></div>
-    </section>
-
-    <section class="panel" id="day9" role="tabpanel" aria-labelledby="tab-day9" hidden>
-      <h2>11/9 月｜帰宅・会議</h2>
-      <div class="warning">16:00会議はこの日です。返却9:00を目標にし、10:00の返却枠を安全到着時刻として使いません。</div>
-      <div class="schedule">
-        <div class="event"><div class="event-time">日の出後</div><div class="event-title">任意：湯平石畳を10〜15分</div><div class="event-meta">朝食と出発に支障がない場合だけ。金鱗湖への遠回りはしない。</div></div>
-        <div class="event"><div class="event-time">7:30–7:50候補</div><div class="event-title">山城屋を出発</div><div class="event-meta">朝食・給油・正確な経路・送迎確認で確定する。</div></div>
-        <div class="event"><div class="event-time">9:00目標</div><div class="event-title">レンタカー返却</div><div class="event-meta">返却枠10:00は余裕ではありません。</div></div>
-        <div class="event"><div class="event-time">10:35–12:10</div><div class="event-title">GK608 大分→成田</div></div>
-        <div class="event"><div class="event-time">13:00–15:30</div><div class="event-title">成田空港→最寄り駅</div><div class="event-meta">乗換実測2時間30分。家着は15:30以降。</div></div>
-        <div class="event"><div class="event-time">16:00</div><div class="event-title">オンライン会議</div></div>
-      </div>
-      <div class="links"><a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&origin=%E6%97%85%E9%A4%A8%E5%B1%B1%E5%9F%8E%E5%B1%8B&destination=%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E3%83%AC%E3%83%B3%E3%82%BF%E3%82%AB%E3%83%BC%E5%A4%A7%E5%88%86%E7%A9%BA%E6%B8%AF%E6%AD%A6%E8%94%B5%E7%94%BA%E7%B3%B8%E5%8E%9F%E5%BA%97" target="_blank" rel="noopener">返却へナビ</a><a class="btn" href="tel:0978974108">レンタカーへ電話</a></div>
-    </section>
-
-    <section class="panel" id="check" role="tabpanel" aria-labelledby="tab-check" hidden>
-      <h2>電話・持ち物チェック</h2>
-      <p class="lead">チェックはこの端末に保存します。保存できない環境でも、その場のチェックは使えます。</p>
-      <div class="checklist" id="checklist"></div>
-    </section>
-  </main>
-  <footer>営業時間・道路状況・紅葉は変わることがあります。<span class="nowrap">候補の出典は同じフォルダの</span>「_出典_大分旅アプリ.md」に記録しています。</footer>
+<div id="splash" role="img" aria-label="山と湖、紅葉を描いた大分旅行の絵">
+  <div class="st"><b>大分・紅葉旅</b><span>2026/11/6 → 11/9 ・ 旅のしおり</span></div>
 </div>
-
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Oita Autumn Trip</p>
+    <h1>大分・紅葉旅 旅のしおり</h1>
+    <div class="dates">2026/11/6(金) 〜 11/9(月) ・ 3泊4日</div>
+  </header>
+  <nav class="tabs" id="tabs" aria-label="日別ページ" role="tablist"></nav>
+  <main id="main"></main>
+  <footer>車時間は2026年11月6日にGoogleマップで確認。<span class="nowrap">渋滞・駐車時間は含みません。</span><span class="nowrap">紅葉・飛行条件は当日の案内優先。</span></footer>
+</div>
 <script>
-"use strict";
-const $=(s,root=document)=>root.querySelector(s);
-const $$=(s,root=document)=>[...root.querySelectorAll(s)];
-const storage={get(k,f){try{const v=localStorage.getItem(k);return v===null?f:JSON.parse(v)}catch(e){return f}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-const mapSearch=name=>`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}`;
-const fmt=m=>`${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
-const state=storage.get("oita-trip-v3",{d7:{plan:"full",snack:"none",cafe:"none"},d8:{walk:"walk40",lunch:"bebenko",activity:"bridge"},checks:{}});
-const data7={
- plan:[
-  {id:"full",name:"海・森・滝の基本案",star:true,open:"銀たち11:00開店／東椎屋8:30〜17:00",stay:305,land:"国東太刀魚、六郷満山の神仏習合、落差85mの滝",travel:"空港→銀たち約10分。以降は概算で当日ナビ再確認",weather:"両子寺の石段と滝の岩は雨天時に滑りやすい",booking:"銀たちの当日入荷・席、やまさの夕食開始を確認",official:"https://www.visit-oita.jp/spots/detail/9160",official2:"http://www.futagoji.jp/",official3:"https://www.usa-kanko.jp/pages/107/",reason:"10:30受取→11時ごろ銀たち→両子寺の森・仁王像・石段→15時ごろ東椎屋の滝→17時前後やまさ。紅葉の見頃は確約しません。"},
-  {id:"short",name:"疲れ・混雑時の短縮案",open:"銀たち11:00開店／東椎屋8:30〜17:00",stay:210,land:"国東太刀魚と東椎屋の滝に絞る",travel:"両子寺を省略。移動は概算で当日ナビ再確認",weather:"滝は濡れた岩に注意。ナビ目的地は滝見苑",booking:"銀たちの当日入荷・席、やまさの夕食開始を確認",official:"https://www.visit-oita.jp/spots/detail/9160",official2:"https://www.usa-kanko.jp/pages/107/",reason:"早朝移動の疲れや混雑があれば両子寺を省き、昼と滝の2本だけにします。"}
- ],
- snack:[
-  {id:"none",name:"からあげ味見は入れない",open:"時間を森・滝・休憩へ戻す",stay:0,land:"詰め込みを避ける",travel:"追加移動なし",weather:"影響なし",booking:"不要",noPlace:true,reason:"昼を銀たちに固定し、からあげを昼食の代わりにしません。"},
-  {id:"taiko",name:"からあげ太閤を少量味見",open:"11/7(土) 10:00〜19:00／月曜休み",stay:50,land:"宇佐からあげの有名受賞店",travel:"寄り道込み約50分を概算加算",weather:"影響小",booking:"営業・混雑を当日確認",official:"https://www.karaage-taikou.com/",reason:"満腹にせず少量の任意味見。時間が押したら省きます。"}
- ],
- cafe:[
-  {id:"none",name:"カフェなし",open:"休憩は道中で柔軟に",stay:0,land:"観光時間を優先",travel:"追加移動なし",weather:"影響なし",booking:"不要",noPlace:true,reason:"KURUを必須にせず、森・滝・旅館への余裕を残します。"},
-  {id:"kuru",name:"カフェと雑貨 KURU",open:"11/7(土) 11:00〜16:00",stay:45,land:"宇佐の小さな地元カフェ",travel:"寄り道込み約45分を概算加算",weather:"雨天の休憩先にもなる",booking:"営業・混雑を当日確認",official:"https://www.instagram.com/kurucafe.zakka/",reason:"時間と体力に余裕がある時だけ。なしを選べます。"}
- ]
-};
-const data8={
- walk:[
-  {id:"walk20",name:"タデ原 木道20分",open:"長者原VC 11月9:00〜16:00",stay:20,land:"ラムサール条約登録湿地の高原木道",travel:"やまさ→長者原は概算約65分",weather:"雨天はVC見学へ切替",booking:"不要。VC開館は公式で再確認",official:"https://kujufanclub.com/",reason:"体力と次の候補へ余裕を残す短い散策。"},
-  {id:"walk40",name:"タデ原 木道40分",star:true,open:"長者原VC 11月9:00〜16:00",stay:40,land:"ラムサール条約登録湿地とくじゅうの草原",travel:"やまさ→長者原は概算約65分",weather:"木道が濡れたら足元注意",booking:"不要。VC開館は公式で再確認",official:"https://kujufanclub.com/",reason:"自然を味わいながら午後の1候補も選びやすい基本案。"},
-  {id:"walk60",name:"タデ原 木道60分",open:"長者原VC 11月9:00〜16:00",stay:60,land:"湿原をゆっくり歩く自然中心案",travel:"やまさ→長者原は概算約65分",weather:"雨・強風ならVCへ切替",booking:"不要。VC開館は公式で再確認",official:"https://kujufanclub.com/",reason:"写真や観察を含め、湿原を主役にする案。"}
- ],
- lunch:[
-  {id:"bebenko",name:"農家レストラン べべんこ",open:"10:00〜L.O.15:30／不定休",stay:60,land:"牧場直営・大分和牛",travel:"タデ原周辺からの移動は概算10分",weather:"影響小",booking:"11/8営業と混雑を確認",official:"https://www.visit-oita.jp/spots/detail/9267",reason:"土地の肉を昼にも楽しめますが、山城屋の夕食も豊後牛なので牛が重なります。コロッケや肉うどんで軽くする選択も。"},
-  {id:"light",name:"高原で軽い昼食",open:"店は当日営業を確認",stay:45,land:"午後と宿の豊後牛を主役にする",travel:"立寄り込み概算",weather:"影響小",booking:"店を決めて営業確認が必要",noPlace:true,reason:"夕食との牛の重複を避け、そば・うどん等を軽めにします。"}
- ],
- activity:[
-  {id:"bridge",name:"九重“夢”大吊橋",star:true,open:"11月8:30〜17:00",stay:180,land:"日本有数の人道吊橋から九酔渓と滝を望む",travel:"往復移動・駐車込み約180分を概算",weather:"強風時閉鎖・傘使用不可",booking:"通常不要。開場状況を公式確認",official:"https://www.yumeooturihashi.com/",reason:"45〜60分の橋上・展望に、移動と駐車の余裕を加えた案。"},
-  {id:"mount",name:"牧ノ戸峠→沓掛山 往復",open:"屋外。日没・道路状況を優先",stay:200,land:"くじゅう連山の稜線と高原の眺め",travel:"登山口移動込み約200分を概算",weather:"急坂・防寒・歩ける靴。悪天候時中止",booking:"不要。道路・登山状況を確認",official:"https://www.env.go.jp/park/aso/point/index.html",reason:"歩行60〜90分＋休憩。タデ原と合わせて自然を主役にします。"},
-  {id:"ride",name:"乗馬（奥さま希望確認後）",open:"営業時間・11/8空き未確認",stay:210,land:"飯田高原で馬と草原を体験",travel:"電話確認後に再計算",weather:"雨・強風時の催行を確認",booking:"空き・初心者教室・総所要を要電話確認",official:"https://www.elrancho.jp/",reason:"大吊橋や登山の代替。空きが取れても他の大型候補と詰め込みません。"},
-  {id:"rain",name:"雨天：長者原VC→宿温泉",open:"長者原VC 11月9:00〜16:00",stay:90,land:"くじゅうの自然展示と山城屋の貸切温泉",travel:"早めに湯平へ移動",weather:"雨・強風時の安全案",booking:"山城屋の入浴・夕食時刻を確認",official:"https://kujufanclub.com/",reason:"屋外を無理せず、16時前後から石畳と温泉に時間を使います。"}
- ]
-};
-const groupLabel={plan:"11/7の回り方",snack:"からあげの味見",cafe:"カフェ",walk:"タデ原の歩き方",lunch:"昼食",activity:"午後の主役"};
-function cardHtml(day,group,item){
- const selected=state[day][group]===item.id;
- const disabled=false;
- const official2=item.official2?`<a class="btn" data-external="${item.official2}" target="_blank" rel="noopener">公式2</a>`:"";
- const official3=item.official3?`<a class="btn" data-external="${item.official3}" target="_blank" rel="noopener">公式3</a>`:"";
- const official=item.official?`<a class="btn" data-external="${item.official}" target="_blank" rel="noopener">公式</a>`:"";
- const map=item.noPlace?"":`<a class="btn" data-external="${mapSearch(item.name)}" target="_blank" rel="noopener">Googleマップ</a>`;
- return `<article class="choice-card${selected?" selected":""}" data-day="${day}" data-group="${group}" data-id="${item.id}">
-  <div class="choice-card-head"><h4>${item.name}</h4>${item.star?'<span class="star">★ 推し</span>':''}</div>
-  <dl class="facts"><div><dt>土地ならでは</dt><dd>${item.land}</dd></div><div><dt>所要</dt><dd>${item.stay}分目安</dd></div><div><dt>営業・時間</dt><dd>${item.open}</dd></div><div><dt>移動</dt><dd>${item.travel}</dd></div><div><dt>天候</dt><dd>${item.weather}</dd></div><div><dt>予約・空き</dt><dd>${item.booking}</dd></div></dl>
-  <p class="reason">${item.reason}</p>
-  <div class="links"><button class="btn select-btn" type="button" aria-pressed="${selected}" ${disabled?"disabled":""}>${selected?"選択中":"これを選ぶ"}</button>${official}${official2}${official3}${map}</div>
- </article>`;
-}
-function renderGroups(day,data,groups){
- const root=$(day==="d7"?"#choices7":"#choices8");
- root.innerHTML=groups.map(g=>`<section class="choice-group"><h3 class="section-title">${groupLabel[g]}を選ぶ</h3><p class="group-intro">カードを1つ選ぶと、その日の概算時間が変わります。</p><div class="cards">${data[g].map(i=>cardHtml(day,g,i)).join("")}</div></section>`).join("");
- $$("[data-external]",root).forEach(a=>a.href=a.dataset.external);
- $$(".select-btn",root).forEach(b=>b.addEventListener("click",()=>{const c=b.closest(".choice-card");state[c.dataset.day][c.dataset.group]=c.dataset.id;save();renderAll()}));
-}
-const find=(data,g,id)=>data[g].find(x=>x.id===id);
-function event(time,title,meta=""){return `<div class="event"><div class="event-time">${time}</div><div class="event-title">${title}</div>${meta?`<div class="event-meta">${meta}</div>`:""}</div>`}
-const slackText=m=>m>=0?`余り ${Math.floor(m/60)}時間${m%60}分`:`余り 0時間0分（${Math.abs(m)}分遅れ）`;
-function calc7(){
- const s=state.d7,p=find(data7,"plan",s.plan),sn=find(data7,"snack",s.snack),c=find(data7,"cafe",s.cafe);let m=p.id==="full"?969:869;
- let html=event("8:00–10:00","GK609 成田→大分")+event("10:30","レンタカー受取","受取後、銀たちの郷へ。移動は概算。");
- html+=event("11:00ごろ","銀たちの郷","漁協直営の国東太刀魚。当日入荷・席は未確認。");
- if(p.id==="full")html+=event("午後","両子寺→東椎屋の滝","森・仁王像・石段の後、落差85mの滝へ。滝は駐車から徒歩約10分。");else html+=event("午後","東椎屋の滝へ直行","疲れ・混雑時は両子寺を省略。");
- if(sn.id!=="none"){m+=sn.stay;html+=event("時間があれば",sn.name,"少量味見。押したら省略。")}if(c.id!=="none"){m+=c.stay;html+=event("時間があれば",c.name,"カフェなしも選択可。")}html+=event(`${fmt(m)}ごろ`,"料亭やまさ旅館","夕食開始時刻は要確認。");$("#schedule7").innerHTML=html;
- const late=m>1020,slack=1020-m,slackLabel=slackText(slack),names=[p.name,sn.name,c.name].join("／");$("#arrival7").innerHTML=`<div class="${late?"late":"ok"}">${late?"17時を過ぎる概算です。やまさへ夕食開始を確認してください。":slackLabel+"。"}<br><span class="mini">移動・滞在の概算。渋滞・駐車・当日入荷は含みません。</span></div>`;$("#overview-result7").innerHTML=`選択中：${names}<br><strong class="${late?"warning":""}">やまさ ${fmt(m)}ごろ／${slackLabel}</strong>`;
-}
-function calc8(){
- const s=state.d8,w=find(data8,"walk",s.walk),l=find(data8,"lunch",s.lunch),a=find(data8,"activity",s.activity);let m=570+65+w.stay+10+l.stay+a.stay+45;
- let html=event("9:00–10:00ごろ","料亭やまさ旅館を出発","朝食と体調で決定。")+event("到着後",w.name,`${w.stay}分目安。雨天はビジターセンターへ。`)+event("昼",l.name,l.reason)+event("午後",a.name,a.reason)+event(`${fmt(m)}ごろ`,"旅館 山城屋","湯平石畳と貸切温泉。18時は到着枠上限で、夕食開始は要確認。");$("#schedule8").innerHTML=html;
- const late=m>1020,slack=1020-m,slackLabel=slackText(slack),names=[w.name,l.name,a.name];$("#arrival8").innerHTML=`<div class="${late?"late":"ok"}">${late?"17時を過ぎる概算です。候補を減らしてください。":slackLabel+"。"}<br><span class="mini">9:30出発・概算移動で計算。乗馬は空き・総所要確認後に再計算が必要です。</span></div>`;$("#overview-result8").innerHTML=`選択中：${names.join(" → ")}<br><strong class="${late?"warning":""}">山城屋 ${fmt(m)}ごろ／${slackLabel}</strong>`;
-}
-function save(){storage.set("oita-trip-v3",state)}
-function renderAll(){renderGroups("d7",data7,["plan","snack","cafe"]);renderGroups("d8",data8,["walk","lunch","activity"]);calc7();calc8()}
+(function(){
+  'use strict';
+  const mapUrl=q=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(q)+'&travelmode=driving';
+  const pin=(label,q)=>'<a class="pin" href="'+mapUrl(q)+'" target="_blank" rel="noopener">📍 '+label+'</a>';
+  const official=(label,url)=>'<a class="link" href="'+url+'" target="_blank" rel="noopener">↗ '+label+'</a>';
+  const item=(t,cat,cls,ttl,desc,links='')=>`<article class="item ${cls}"><div class="cat">${cat}</div><div class="top"><span class="time">${t}</span><span class="ttl">${ttl}</span></div>${desc?`<p class="desc">${desc}</p>`:''}${links?`<div class="row">${links}</div>`:''}</article>`;
 
-const checks=[
- ["ride-call","乗馬を選ぶ場合だけ確認","奥さまの希望、11/8の空き、初心者教室と総所要、雨天時の催行を確認。"],
- ["yamashiro-breakfast","山城屋へ朝食・夕食時刻を確認","11/8夕食開始と、11/9の7:30〜7:50出発候補に朝食を合わせられるか確認。"],
- ["yamasa-dinner","やまさへ夕食開始を確認","11/7の17時前後到着でよいか。遅れる場合の連絡時刻も確認。"],
- ["gintachi","銀たちの郷を当日確認","太刀魚の入荷、11時の席、混雑を確認。"],
- ["morning","前泊か当日朝かを夫婦で決める","当日朝案は日暮里5分接続・T3までの移動余裕が小さい。予約取消・変更は別途。"],
- ["license","運転免許証・支払い手段","レンタカー受取に使う物。"],
- ["flight","搭乗に必要な情報","詳しい情報は別で確認。このアプリには保存しない。"],
- ["ride-wear","乗馬の服装","長ズボン、動きやすい靴、防寒。雨具も確認。"],
- ["outdoor","散策の持ち物","歩きやすい靴、薄手の重ね着、飲み物。"],
- ["devices","スマホ・充電器・モバイルバッテリー","ナビとしおり用。"],
- ["medicine","常備薬・保険証類","必要な分だけ。"],
- ["hotel","宿と便の情報を別で確認","詳しい情報は別で確認。この公開用しおりには書かない。"]
-];
-function renderChecklist(){const root=$("#checklist");root.innerHTML=checks.map(([id,t,d])=>`<div class="check"><input type="checkbox" id="${id}" ${state.checks[id]?"checked":""}><label for="${id}"><strong>${t}</strong><small>${d}</small></label></div>`).join("");$$("input",root).forEach(i=>i.addEventListener("change",()=>{state.checks[i.id]=i.checked;save()}))}
+  const days=[
+    {key:'全体',dow:'',title:'4日間の流れ',sub:'風で変わる午後だけを分岐。宿と帰路は固定。',html:`
+      <div class="note"><strong>パラグライダーは予約済み</strong><br>風しだいで11/7(土)または11/8(日)の14:00・15:00。<span class="nowrap">11/6の事業者連絡で</span><span class="nowrap">飛ぶ日と場所を確定します。</span></div>
+      <div class="overview-grid">
+        <article class="overview-card"><h3><span>11/6 金</span>成田前泊</h3><p>オンライン会議 <span class="arrow">→</span> 旅支度 <span class="arrow">→</span> 東横INN成田空港本館</p></article>
+        <article class="overview-card"><h3><span>11/7 土</span>別府・鉄輪と紅葉</h3><p><strong>5:30起床・6:10のホテルバス。</strong>飛ばない日は文福の後、別府地獄めぐりと鉄輪を2時間、<span class="nowrap">福貴野の滝を回って</span><span class="nowrap">16:38頃やまさ着。</span>飛ぶ日は<span class="nowrap">飛行地決定後に</span><span class="nowrap">近い1か所だけ。</span></p></article>
+        <article class="overview-card"><h3><span>11/8 日</span>九重と由布院</h3><p>飛ばない日は7:30発で朝一のタデ原・大吊橋・九酔渓、由布院で昼食と<span class="nowrap">街歩きを約3時間、</span><span class="nowrap">15:00頃山城屋着。</span>飛ぶ日は<span class="nowrap">飛行地決定後に</span><span class="nowrap">近い1か所だけ。</span></p></article>
+        <article class="overview-card"><h3><span>11/9 月</span>帰京と会議</h3><p>レンタカー返却 <span class="arrow">→</span> 大分空港 <span class="arrow">→</span> 成田12:10着 <span class="arrow">→</span> <span class="nowrap">最寄り駅14:10〜14:30着</span> <span class="arrow">→</span> <span class="nowrap">16:00オンライン会議</span></p></article>
+      </div>`},
+    {key:'11/6',dow:'金',title:'11/6(金)｜成田前泊',sub:'宿は予約済み。飛行日の連絡を受ける日。',html:
+      item('10:00–11:00','予定','move','オンライン会議','会議後に旅支度を進めます。')+
+      item('連絡待ち','確認','fly','パラグライダーの飛行日を確定','11/7(土)か11/8(日)か、飛行場所・集合場所・集合時刻・所要時間を確認します。')+
+      item('夜','前泊','stay','東横INN成田空港本館','予約済み。明日の朝は6:10のバス（第3ターミナルに停まる最終）。早めに寝る。',pin('ホテルへ','東横INN成田空港本館')+official('ホテル公式','https://www.toyoko-inn.com/search/detail/00037/'))},
+    {key:'11/7',dow:'土',title:'11/7(土)｜文福と別府・鉄輪',sub:'飛ばない日は別府をたっぷり歩き、帰り道に紅葉へ。',html:
+      `<div class="note"><strong>朝はこれだけ守る</strong><br>5:30起床 → <span class="nowrap">6:10のホテルバス</span>（第3ターミナルに停まる最終・余裕を持つなら5:50）。<span class="nowrap">手荷物と手続きの締切は7:30、</span><span class="nowrap">搭乗口は7:30まで。</span>ホテルの無料朝食は6:30からで間に合いません。</div>`+
+      item('5:30','起床','warn','起きる','身支度とチェックアウトに40分。バスに乗っている時間は短い。早いのは、第3ターミナルに停まるバスが6:10で終わるため。')+
+      item('6:10','バス','move','東横INNの送迎バスで第3ターミナルへ','第3ターミナルに停まるのは6:10発まで（4:20〜6:10の※便）。6:30以降の便は第3ターミナルに停まらない。',official('送迎バス時刻','https://www.toyoko-inn.com/campaign/pickup/narita/'))+
+      item('7:30まで','締切','warn','手荷物・手続き・搭乗口','保安検査は7:00までに通る目安。搭乗締切は7:45。',official('ジェットスター公式','https://www.jetstar.com/jp/ja/help/when-do-i-need-to-get-to-the-airport'))+
+      item('8:00–10:10','移動','move','成田から大分へ','到着後、送迎でレンタカー店へ向かいます。')+
+      item('10:30','車','move','ニコニコレンタカーで受取','文福まで車56分・44.2km。',pin('レンタカー店へ','ニコニコレンタカー 大分空港武蔵町糸原店'))+
+      item('11:30頃','昼食','eat','観光館 文福でがん汁','宇佐神宮近くの郷土料理。営業・席は当日確認します。',pin('文福へ','郷土料理のお店 観光館 文福')+official('文福公式','https://www.bunpuku.jp/'))+
+      `<section class="branch"><h3 class="branch-title"><span class="pill">11/7側</span>紅葉候補の一覧</h3>
+        <div class="choice"><h4>福貴野の滝</h4><p>見頃：10月下旬〜11月上旬｜車：御霊もみじから50分｜目安：30分</p><div class="row">${pin('福貴野の滝へ','福貴野の滝展望台')}${official('見頃の出典','https://www.visit-oita.jp/topics/detail/421')}</div></div>
+        <div class="choice"><h4>深耶馬渓（一目八景）</h4><p class="status">10/28は色づき前。2025年の見頃目安は11/17中心の約1週間。</p><p>車：文福から48分｜目安：45〜60分</p><div class="row">${pin('一目八景へ','一目八景展望台')}${official('2026紅葉情報','https://nakatsuyaba.com/pages/512/')}${official('見頃の記録','https://nakatsuyaba.com/pages/485/')}</div></div>
+        <div class="choice"><h4>御霊もみじ</h4><p class="status">10/28は色づき始め。2025年は外観が11/17中心、境内が12/1中心。</p><p>車：文福から38分｜目安：30〜45分</p><div class="row">${pin('御霊もみじへ','御霊もみじ')}${official('2026紅葉情報','https://nakatsuyaba.com/pages/512/')}${official('見頃の記録','https://nakatsuyaba.com/pages/485/')}</div></div>
+        <div class="choice"><h4>溪石園</h4><p class="status">10/28は色づき始め。2025年の見頃目安は11/20中心の約1週間。</p><p>車：文福から42分｜目安：45〜60分</p><div class="row">${pin('溪石園へ','耶馬渓ダム記念公園 溪石園')}${official('2026紅葉情報','https://nakatsuyaba.com/pages/512/')}${official('見頃の記録','https://nakatsuyaba.com/pages/485/')}</div></div>
+        <div class="choice"><h4>両子寺 <span class="status">早いかも</span></h4><p>例年は11月中旬〜下旬。現在は色づき始め（見頃前）のため、11/7・8は早い見込み。</p><p class="measure">車：文福から35分・両子寺からやまさ50分｜目安：45〜60分</p><div class="row">${pin('両子寺へ','両子寺')}${official('紅葉情報','https://tenki.jp/kouyou/9/47/30761.html')}${official('例年の見頃','https://visit-kunisaki.com/spot/%E4%B8%A1%E5%AD%90%E5%AF%BA/')}</div></div>
+      </section>`+
+      `<section class="branch"><h3 class="branch-title"><span class="pill">飛ばない日なら</span>おすすめの組み合わせ</h3><div class="choice"><h4>★ 文福 → 別府地獄めぐり・鉄輪 → 福貴野の滝 → やまさ</h4><p>11:30文福着・がん汁 → 12:30発 → 13:14海地獄着 → 13:15〜14:30海地獄・かまど地獄 → 14:30〜15:15鉄輪の温泉街 → 15:15発 → 15:54福貴野の滝着 → 15:55〜16:20展望台 → 16:20発 → 16:38やまさ着。</p><p>地獄めぐりは8:00〜17:00・年中無休。見どころ：コバルトブルーの海地獄、かまど地獄の噴気と多彩な池、鉄輪の湯けむり・地獄蒸し。</p><p class="measure">車合計1時間41分｜別府・鉄輪2時間｜やまさ16:38頃着｜16:30〜17:00宿入り ○</p><div class="row">${pin('海地獄へ','海地獄')}${pin('鉄輪へ','鉄輪温泉')}${pin('福貴野の滝へ','福貴野の滝展望台')}${official('地獄めぐり公式','https://www.beppu-jigoku.com/')}</div></div></section>`+
+      `<section class="branch"><h3 class="branch-title"><span class="pill fly">飛ぶ日なら</span>飛行を優先</h3><div class="choice"><h4>文福 → パラグライダー → やまさ</h4><p class="status">飛行場所が未定のため、この日は紅葉なし。場所が決まったら前後に寄れる近い1か所だけを選び、車時間を測り直します。</p><p class="measure">車合計・宿到着は飛行場所決定後｜17:00宿入り △</p></div></section>`+
+      item('16:30–17:00','宿','stay','<span class="nowrap">料亭やまさ旅館</span>','飛ばない日の案は16:38頃着。飛ぶ日は場所決定後に再計算します。',pin('やまさへ','料亭 やまさ旅館'))},
+    {key:'11/8',dow:'日',title:'11/8(日)｜九重と由布院の街歩き',sub:'飛ばない日は自然を見た後、由布院で昼食と散策。',html:
+      `<div class="note"><strong>チェックインの時にもう一度頼む</strong><br>「朝ご飯を7:00か7:30にしてもらえますか。早く出たいです」<br>普段の朝食は8:00〜8:30（11/6の電話で聞いた）。ずらせなければ8:40頃に出て、タデ原は9:45頃。</div>`+
+      item('7:30','出発','move','<span class="nowrap">料亭やまさ旅館</span>を出発','朝一の山を見に。タデ原湿原まで車1時間5分・64.2km。')+
+      `<section class="branch"><h3 class="branch-title"><span class="pill">11/8側</span>紅葉候補の一覧</h3>
+        <div class="choice"><h4>タデ原湿原</h4><p>11/3時点：長者原周辺の山麓は週末に見頃見込み｜車：やまさから1時間5分｜目安：40〜60分</p><div class="row">${pin('タデ原へ','タデ原湿原')}${official('11/3の状況','https://tosonline.jp/news/20261103/00000005.html')}${official('散策案内','https://www.env.go.jp/nature/nationalparks/list/aso-kuju/course/01/')}</div></div>
+        <div class="choice"><h4>九重“夢”大吊橋</h4><p>橋から望む九酔渓は11月上旬が見頃｜車：タデ原から12分｜目安：45〜60分</p><div class="row">${pin('大吊橋へ','九重夢大吊橋')}${official('大吊橋公式','https://www.yumeooturihashi.com/')}${official('見頃の出典','https://www.visit-oita.jp/spots/detail/4738')}</div></div>
+        <div class="choice"><h4>九酔渓</h4><p>見頃：11月上旬｜車：タデ原から15分｜目安：20〜30分</p><div class="row">${pin('九酔渓へ','九酔渓 桂茶屋')}${official('見頃の出典','https://www.visit-oita.jp/spots/detail/4738')}</div></div>
+      </section>`+
+      `<section class="branch"><h3 class="branch-title"><span class="pill">飛ばない日なら</span>おすすめの組み合わせ</h3><div class="choice"><h4>★ やまさ → タデ原 → 九重“夢”大吊橋 → 九酔渓 → 由布院 → 山城屋</h4><p>7:30やまさ発 → 8:35タデ原着・朝の山を見て散策 → 9:42大吊橋着・見学 → 10:35九酔渓・桂茶屋 → 11:44由布院着 → 11:45〜14:35金鱗湖・湯の坪街道で昼食、散策、食べ歩き → 14:35発 → 15:00山城屋着。</p><p>由布院の営業時間：金鱗湖は公式案内に記載なし（定休日なし）、湯の坪街道は店による。見どころ：湖畔の散策路と、約800mの通りに並ぶ土産物店・スイーツ店。</p><p class="measure">車合計2時間26分｜由布院約3時間｜山城屋15:00頃着｜15:00〜16:00宿入り ○</p><div class="row">${pin('タデ原へ','タデ原湿原')}${pin('大吊橋へ','九重夢大吊橋')}${pin('金鱗湖へ','金鱗湖')}${official('金鱗湖公式','https://yufuin.gr.jp/spot/spot-1268/')}${official('湯の坪街道公式','https://yufuin.gr.jp/spot/spot-1277/')}</div></div></section>`+
+      `<section class="branch"><h3 class="branch-title"><span class="pill fly">飛ぶ日なら</span>飛行を優先</h3><div class="choice"><h4>やまさ → パラグライダー → 山城屋</h4><p class="status">飛行場所が未定のため、この日は紅葉なし。場所が決まったら前後に寄れる近い1か所だけを選び、車時間を測り直します。</p><p class="measure">車合計・宿到着は飛行場所決定後｜18:00までの宿入り △</p></div></section>`+
+      item('15:00–16:00','宿','stay','旅館 山城屋','飛ばない日の案は15:00頃着。飛ぶ日は場所決定後に再計算します。',pin('山城屋へ','旅館 山城屋 湯平'))},
+    {key:'11/9',dow:'月',title:'11/9(月)｜帰京・オンライン会議',sub:'返却を早めに終え、16時の会議へ。',html:
+      `<div class="note"><strong>16:00のオンライン会議</strong><br>預けなし＝12:22発 → <span class="nowrap">最寄り駅14:10着</span>（会議の110分前）。<br>預けあり＝12:42発 → <span class="nowrap">最寄り駅14:30着</span>（会議の90分前）。</div>`+
+      item('日の出後','散策','see','任意：湯平石畳を10〜15分','朝食と出発に支障がない場合だけ。')+
+      item('7:30–7:50','出発','move','山城屋を出発','朝食・給油・道路状況を見て確定します。')+
+      item('9:00目標','返却','move','レンタカー返却','10:00の返却枠を安全到着時刻にはしません。')+
+      item('10:35–12:10','移動','move','大分から成田へ','荷物を預けなければ、着いてすぐ出られます。')+
+      item('12:22 / 12:42','帰宅','move','成田空港から最寄り駅へ','スカイライナー → 日暮里 → 山手線 → 新宿 → 小田急 → 新百合ヶ丘で各停。預けなし12:22発→14:10着／預けあり12:42発→14:30着（Googleマップ 11/6実測）。')+
+      item('16:00','会議','move','オンライン会議','どちらでも90分以上の余裕。')},
+    {key:'準備',dow:'',title:'準備・当日の確認',sub:'チェックはこの端末だけに保存。',html:`
+      <section class="check"><h3>11/6まで <span class="cnt" data-count="pre"></span></h3><ul>
+        <li><label><input type="checkbox" data-group="pre" data-id="flight"><span>飛行日・場所・集合時刻・所要時間を確認</span></label></li>
+        <li><label><input type="checkbox" data-group="pre" data-id="hotel"><span>前泊の送迎時刻を確認</span></label></li>
+        <li><label><input type="checkbox" data-group="pre" data-id="license"><span>運転免許証とレンタカー受取用品</span></label></li>
+      </ul></section>
+      <section class="check"><h3>自然の日 <span class="cnt" data-count="nature"></span></h3><ul>
+        <li><label><input type="checkbox" data-group="nature" data-id="shoes"><span>滑りにくい靴</span></label></li>
+        <li><label><input type="checkbox" data-group="nature" data-id="warm"><span>防寒着・雨具</span></label></li>
+        <li><label><input type="checkbox" data-group="nature" data-id="color"><span>紅葉の当日情報を確認</span></label></li>
+      </ul></section>
+      <button type="button" class="reset" id="reset">チェックをすべて外す</button>`}
+  ];
 
-$$('.tab').forEach(tab=>tab.addEventListener('click',()=>{const id=tab.dataset.tab;$$('.tab').forEach(t=>t.setAttribute('aria-selected',String(t===tab)));$$('.panel').forEach(p=>{const active=p.id===id;p.classList.toggle('active',active);p.hidden=!active});window.scrollTo({top:0,behavior:'smooth'})}));
-renderChecklist();renderAll();
+  const tabs=document.getElementById('tabs');
+  const main=document.getElementById('main');
+  days.forEach((d,i)=>{
+    const id='day-'+i;
+    const b=document.createElement('button');
+    b.className='tab'+(i===0?' active':'');b.type='button';b.role='tab';b.id='tab-'+i;b.setAttribute('aria-controls',id);b.setAttribute('aria-selected',i===0?'true':'false');
+    b.innerHTML=d.key+(d.dow?`<small>${d.dow}</small>`:'');tabs.appendChild(b);
+    const s=document.createElement('section');s.className='day'+(i===0?' active':'');s.id=id;s.role='tabpanel';s.setAttribute('aria-labelledby',b.id);
+    s.innerHTML=`<div class="dayhead"><h2>${d.title}</h2><p>${d.sub}</p></div>${d.html}`;main.appendChild(s);
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>{x.classList.remove('active');x.setAttribute('aria-selected','false')});
+      document.querySelectorAll('.day').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');b.setAttribute('aria-selected','true');s.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  const splash=document.getElementById('splash');
+  const hideSplash=()=>splash.classList.add('hide');
+  splash.addEventListener('click',hideSplash);
+  setTimeout(hideSplash,1800);
+  setTimeout(()=>{splash.style.display='none'},2500);
+
+  const key='oita-trip-checks-v5';
+  let saved={};try{saved=JSON.parse(localStorage.getItem(key)||'{}')}catch(_){saved={}}
+  const boxes=[...document.querySelectorAll('.check input')];
+  const update=()=>{
+    boxes.forEach(x=>x.checked=!!saved[x.dataset.id]);
+    document.querySelectorAll('[data-count]').forEach(el=>{
+      const group=el.dataset.count;const xs=boxes.filter(x=>x.dataset.group===group);el.textContent=`${xs.filter(x=>x.checked).length}/${xs.length}`;
+    });
+  };
+  boxes.forEach(x=>x.addEventListener('change',()=>{saved[x.dataset.id]=x.checked;try{localStorage.setItem(key,JSON.stringify(saved))}catch(_){}update()}));
+  const reset=document.getElementById('reset');if(reset)reset.addEventListener('click',()=>{saved={};try{localStorage.removeItem(key)}catch(_){}update()});
+  update();
+})();
 </script>
 </body>
 </html>
