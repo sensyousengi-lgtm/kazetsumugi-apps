@@ -146,18 +146,18 @@
 
   const days=[
     {key:'全体',dow:'',title:'4日間の流れ',sub:'風で変わる午後だけを分岐。宿と帰路は固定。',html:`
-      <div class="note"><strong>パラグライダーは予約済み</strong><br>風しだいで11/7(土)または11/8(日)の14:00・15:00。<span class="nowrap">11/6の事業者連絡で</span><span class="nowrap">飛ぶ日と場所を確定します。</span></div>
+      <div class="note"><strong>パラグライダーは11/8(日)・伐株山</strong><br>14:00から1人、15:00から1人。<span class="nowrap">1人最大1時間半。</span><span class="nowrap">11/7に飛ぶ連絡が来たら組み直します。</span></div>
       <div class="overview-grid">
         <article class="overview-card"><h3><span>11/6 金</span>成田前泊</h3><p>オンライン会議 <span class="arrow">→</span> 旅支度 <span class="arrow">→</span> 東横INN成田空港本館</p></article>
-        <article class="overview-card"><h3><span>11/7 土</span>別府・鉄輪と紅葉</h3><p><strong>5:30起床・6:10のホテルバス。</strong>飛ばない日は文福の後、別府地獄めぐりと鉄輪を2時間、<span class="nowrap">福貴野の滝を回って</span><span class="nowrap">16:38頃やまさ着。</span>飛ぶ日は<span class="nowrap">飛行地決定後に</span><span class="nowrap">近い1か所だけ。</span></p></article>
-        <article class="overview-card"><h3><span>11/8 日</span>九重と由布院</h3><p>飛ばない日は7:30発で朝一のタデ原・大吊橋・九酔渓、由布院で昼食と<span class="nowrap">街歩きを約3時間、</span><span class="nowrap">15:00頃山城屋着。</span>飛ぶ日は<span class="nowrap">飛行地決定後に</span><span class="nowrap">近い1か所だけ。</span></p></article>
+        <article class="overview-card"><h3><span>11/7 土</span>別府・鉄輪と紅葉</h3><p><strong>5:30起床・6:10のホテルバス。</strong>文福の後、別府地獄めぐりと鉄輪を2時間、<span class="nowrap">福貴野の滝を回って</span><span class="nowrap">16:38頃やまさ着。</span></p></article>
+        <article class="overview-card"><h3><span>11/8 日</span>九重とパラグライダー</h3><p>朝食7:00・8:00発で朝一のタデ原・大吊橋・九酔渓、<span class="nowrap">九重町のフレンチで昼食、</span><span class="nowrap">14:00伐株山で飛ぶ、</span><span class="nowrap">17:15頃山城屋着。</span></p></article>
         <article class="overview-card"><h3><span>11/9 月</span>帰京と会議</h3><p>レンタカー返却 <span class="arrow">→</span> 大分空港 <span class="arrow">→</span> 成田12:10着 <span class="arrow">→</span> <span class="nowrap">最寄り駅14:10〜14:30着</span> <span class="arrow">→</span> <span class="nowrap">16:00オンライン会議</span></p></article>
       </div>`},
-    {key:'11/6',dow:'金',title:'11/6(金)｜成田前泊',sub:'宿は予約済み。飛行日の連絡を受ける日。',html:
+    {key:'11/6',dow:'金',title:'11/6(金)｜成田前泊',sub:'宿は予約済み。飛ぶのは11/8(日)で組んだ。',html:
       item('10:00–11:00','予定','move','オンライン会議','会議後に旅支度を進めます。')+
-      item('連絡待ち','確認','fly','パラグライダーの飛行日を確定','11/7(土)か11/8(日)か、飛行場所・集合場所・集合時刻・所要時間を確認します。')+
+      item('20:30','確認','fly','パラグライダーは11/8(日)で組んだ','11/7に飛ぶ連絡は来ていない。場所は伐株山、14:00から1人・15:00から1人。')+
       item('夜','前泊','stay','東横INN成田空港本館','予約済み。明日の朝は6:10のバス（第3ターミナルに停まる最終）。早めに寝る。',pin('ホテルへ','東横INN成田空港本館')+official('ホテル公式','https://www.toyoko-inn.com/search/detail/00037/'))},
-    {key:'11/7',dow:'土',title:'11/7(土)｜文福と別府・鉄輪',sub:'飛ばない日は別府をたっぷり歩き、帰り道に紅葉へ。',html:
+    {key:'11/7',dow:'土',title:'11/7(土)｜文福と別府・鉄輪',sub:'別府をたっぷり歩き、帰り道に紅葉へ。',html:
       `<div class="note"><strong>朝はこれだけ守る</strong><br>5:30起床 → <span class="nowrap">6:10のホテルバス</span>（第3ターミナルに停まる最終・余裕を持つなら5:50）。<span class="nowrap">手荷物と手続きの締切は7:30、</span><span class="nowrap">搭乗口は7:30まで。</span>ホテルの無料朝食は6:30からで間に合いません。</div>`+
       item('5:30','起床','warn','起きる','身支度とチェックアウトに40分。バスに乗っている時間は短い。早いのは、第3ターミナルに停まるバスが6:10で終わるため。')+
       item('6:10','バス','move','東横INNの送迎バスで第3ターミナルへ','第3ターミナルに停まるのは6:10発まで（4:20〜6:10の※便）。6:30以降の便は第3ターミナルに停まらない。',official('送迎バス時刻','https://www.toyoko-inn.com/campaign/pickup/narita/'))+
@@ -172,20 +172,21 @@
         <div class="choice"><h4>溪石園</h4><p class="status">10/28は色づき始め。2025年の見頃目安は11/20中心の約1週間。</p><p>車：文福から42分｜目安：45〜60分</p><div class="row">${pin('溪石園へ','耶馬渓ダム記念公園 溪石園')}${official('2026紅葉情報','https://nakatsuyaba.com/pages/512/')}${official('見頃の記録','https://nakatsuyaba.com/pages/485/')}</div></div>
         <div class="choice"><h4>両子寺 <span class="status">早いかも</span></h4><p>例年は11月中旬〜下旬。現在は色づき始め（見頃前）のため、11/7・8は早い見込み。</p><p class="measure">車：文福から35分・両子寺からやまさ50分｜目安：45〜60分</p><div class="row">${pin('両子寺へ','両子寺')}${official('紅葉情報','https://tenki.jp/kouyou/9/47/30761.html')}${official('例年の見頃','https://visit-kunisaki.com/spot/%E4%B8%A1%E5%AD%90%E5%AF%BA/')}</div></div>
       </section>`+
-      `<section class="branch"><h3 class="branch-title"><span class="pill">飛ばない日なら</span>おすすめの組み合わせ</h3><div class="choice"><h4>★ 文福 → 別府地獄めぐり・鉄輪 → 福貴野の滝 → やまさ</h4><p>11:30文福着・がん汁 → 12:30発 → 13:14海地獄着 → 13:15〜14:30海地獄・かまど地獄 → 14:30〜15:15鉄輪の温泉街 → 15:15発 → 15:54福貴野の滝着 → 15:55〜16:20展望台 → 16:20発 → 16:38やまさ着。</p><p>地獄めぐりは8:00〜17:00・年中無休。見どころ：コバルトブルーの海地獄、かまど地獄の噴気と多彩な池、鉄輪の湯けむり・地獄蒸し。</p><p class="measure">車合計1時間41分｜別府・鉄輪2時間｜やまさ16:38頃着｜16:30〜17:00宿入り ○</p><div class="row">${pin('海地獄へ','海地獄')}${pin('鉄輪へ','鉄輪温泉')}${pin('福貴野の滝へ','福貴野の滝展望台')}${official('地獄めぐり公式','https://www.beppu-jigoku.com/')}</div></div></section>`+
-      `<section class="branch"><h3 class="branch-title"><span class="pill fly">飛ぶ日なら</span>飛行を優先</h3><div class="choice"><h4>文福 → パラグライダー → やまさ</h4><p class="status">飛行場所が未定のため、この日は紅葉なし。場所が決まったら前後に寄れる近い1か所だけを選び、車時間を測り直します。</p><p class="measure">車合計・宿到着は飛行場所決定後｜17:00宿入り △</p></div></section>`+
-      item('16:30–17:00','宿','stay','<span class="nowrap">料亭やまさ旅館</span>','飛ばない日の案は16:38頃着。飛ぶ日は場所決定後に再計算します。',pin('やまさへ','料亭 やまさ旅館'))},
-    {key:'11/8',dow:'日',title:'11/8(日)｜九重と由布院の街歩き',sub:'飛ばない日は自然を見た後、由布院で昼食と散策。',html:
-      `<div class="note"><strong>チェックインの時にもう一度頼む</strong><br>「朝ご飯を7:00か7:30にしてもらえますか。早く出たいです」<br>普段の朝食は8:00〜8:30（11/6の電話で聞いた）。ずらせなければ8:40頃に出て、タデ原は9:45頃。</div>`+
-      item('7:30','出発','move','<span class="nowrap">料亭やまさ旅館</span>を出発','朝一の山を見に。タデ原湿原まで車1時間5分・64.2km。')+
+      `<section class="branch"><h3 class="branch-title"><span class="pill">この日の流れ</span>おすすめの組み合わせ</h3><div class="choice"><h4>★ 文福 → 別府地獄めぐり・鉄輪 → 福貴野の滝 → やまさ</h4><p>11:30文福着・がん汁 → 12:30発 → 13:14海地獄着 → 13:15〜14:30海地獄・かまど地獄 → 14:30〜15:15鉄輪の温泉街 → 15:15発 → 15:54福貴野の滝着 → 15:55〜16:20展望台 → 16:20発 → 16:38やまさ着。</p><p>地獄めぐりは8:00〜17:00・年中無休。見どころ：コバルトブルーの海地獄、かまど地獄の噴気と多彩な池、鉄輪の湯けむり・地獄蒸し。</p><p class="measure">車合計1時間41分｜別府・鉄輪2時間｜やまさ16:38頃着｜16:30〜17:00宿入り ○</p><div class="row">${pin('海地獄へ','海地獄')}${pin('鉄輪へ','鉄輪温泉')}${pin('福貴野の滝へ','福貴野の滝展望台')}${official('地獄めぐり公式','https://www.beppu-jigoku.com/')}</div></div></section>`+
+      item('16:30–17:00','宿','stay','<span class="nowrap">料亭やまさ旅館</span>','16:38頃着。チェックインの時に、明日の朝ご飯を7:00にしてもらう。',pin('やまさへ','料亭 やまさ旅館'))},
+    {key:'11/8',dow:'日',title:'11/8(日)｜九重の朝とパラグライダー',sub:'朝一の山を見て、14:00に伐株山で飛ぶ。',html:
+      `<div class="note"><strong>チェックインの時にもう一度頼む</strong><br>「朝ご飯を7:00にしてもらえますか。早く出たいです」<br>普段の朝食は8:00〜8:30（11/6の電話で聞いた）。ずらせなければ8:40頃に出て、タデ原を30分に縮める（伐株山13:45頃着は変わらない）。</div>`+
+      item('7:00','朝食','eat','朝ご飯','いつもより1時間早めてもらう。')+
+      item('8:00','出発','move','<span class="nowrap">料亭やまさ旅館</span>を出発','朝一の山を見に。タデ原湿原まで車1時間5分・64.2km。')+
       `<section class="branch"><h3 class="branch-title"><span class="pill">11/8側</span>紅葉候補の一覧</h3>
         <div class="choice"><h4>タデ原湿原</h4><p>11/3時点：長者原周辺の山麓は週末に見頃見込み｜車：やまさから1時間5分｜目安：40〜60分</p><div class="row">${pin('タデ原へ','タデ原湿原')}${official('11/3の状況','https://tosonline.jp/news/20261103/00000005.html')}${official('散策案内','https://www.env.go.jp/nature/nationalparks/list/aso-kuju/course/01/')}</div></div>
         <div class="choice"><h4>九重“夢”大吊橋</h4><p>橋から望む九酔渓は11月上旬が見頃｜車：タデ原から12分｜目安：45〜60分</p><div class="row">${pin('大吊橋へ','九重夢大吊橋')}${official('大吊橋公式','https://www.yumeooturihashi.com/')}${official('見頃の出典','https://www.visit-oita.jp/spots/detail/4738')}</div></div>
         <div class="choice"><h4>九酔渓</h4><p>見頃：11月上旬｜車：タデ原から15分｜目安：20〜30分</p><div class="row">${pin('九酔渓へ','九酔渓 桂茶屋')}${official('見頃の出典','https://www.visit-oita.jp/spots/detail/4738')}</div></div>
       </section>`+
-      `<section class="branch"><h3 class="branch-title"><span class="pill">飛ばない日なら</span>おすすめの組み合わせ</h3><div class="choice"><h4>★ やまさ → タデ原 → 九重“夢”大吊橋 → 九酔渓 → 由布院 → 山城屋</h4><p>7:30やまさ発 → 8:35タデ原着・朝の山を見て散策 → 9:42大吊橋着・見学 → 10:35九酔渓・桂茶屋 → 11:44由布院着 → 11:45〜14:35金鱗湖・湯の坪街道で昼食、散策、食べ歩き → 14:35発 → 15:00山城屋着。</p><p>由布院の営業時間：金鱗湖は公式案内に記載なし（定休日なし）、湯の坪街道は店による。見どころ：湖畔の散策路と、約800mの通りに並ぶ土産物店・スイーツ店。</p><p class="measure">車合計2時間26分｜由布院約3時間｜山城屋15:00頃着｜15:00〜16:00宿入り ○</p><div class="row">${pin('タデ原へ','タデ原湿原')}${pin('大吊橋へ','九重夢大吊橋')}${pin('金鱗湖へ','金鱗湖')}${official('金鱗湖公式','https://yufuin.gr.jp/spot/spot-1268/')}${official('湯の坪街道公式','https://yufuin.gr.jp/spot/spot-1277/')}</div></div></section>`+
-      `<section class="branch"><h3 class="branch-title"><span class="pill fly">飛ぶ日なら</span>飛行を優先</h3><div class="choice"><h4>やまさ → パラグライダー → 山城屋</h4><p class="status">飛行場所が未定のため、この日は紅葉なし。場所が決まったら前後に寄れる近い1か所だけを選び、車時間を測り直します。</p><p class="measure">車合計・宿到着は飛行場所決定後｜18:00までの宿入り △</p></div></section>`+
-      item('15:00–16:00','宿','stay','旅館 山城屋','飛ばない日の案は15:00頃着。飛ぶ日は場所決定後に再計算します。',pin('山城屋へ','旅館 山城屋 湯平'))},
+      `<section class="branch"><h3 class="branch-title"><span class="pill fly">この日の流れ</span>おすすめの組み合わせ</h3><div class="choice"><h4>★ やまさ → タデ原 → 九重“夢”大吊橋 → 九酔渓 → ル・ラパンで昼 → 伐株山 → 山城屋</h4><p>8:00やまさ発 → 9:05タデ原着・朝の山を見て散策 → 10:00発 → 10:12大吊橋着・見学 → 11:00発 → 九酔渓・桂茶屋（谷の紅葉を車で走りながら見る）→ 11:45発 → 12:00ル・ラパンで昼のコース → 13:25発 → 13:45頃伐株山着（早く着いても待つだけ＝15分の余裕）→ 14:00から1人・15:00から1人（1人最大1時間半）→ 16:30頃終わる → 山城屋へ → 17:15頃着。</p><p>ル・ラパンは九重町の小さなフレンチ（口コミ4.7）。昼は12:00〜14:30・月曜休み。前菜・原木しいたけのスープ・肉・デザートのコース。九酔渓から伐株山への通り道。</p><p class="measure">車：九酔渓→ル・ラパン→伐株山 合計28分・伐株山→山城屋43分（高速）｜山城屋17:15頃着</p><div class="row">${pin('タデ原へ','タデ原湿原')}${pin('大吊橋へ','九重夢大吊橋')}${pin('ル・ラパンへ','ル・ラパン 九重町野上')}${pin('伐株山へ','伐株山 大分県玖珠郡玖珠町山田')}${official('ル・ラパン公式','https://lelapin-kokonoe.com/')}</div></div></section>`+
+      item('12:00','昼食','eat','ル・ラパン（フレンチ）','昼のコース。席を取るなら電話 0973-77-6633。13:25に出る。',pin('ル・ラパンへ','ル・ラパン 九重町野上')+official('ル・ラパン公式','https://lelapin-kokonoe.com/'))+
+      item('13:45頃','到着','fly','伐株山に着く','早く着いても待つだけなので、15分前で十分。14:00から1人、15:00から1人。1人最大1時間半で、16:30頃終わる。',pin('伐株山へ','伐株山 大分県玖珠郡玖珠町山田'))+
+      item('17:15頃','宿','stay','旅館 山城屋','伐株山から車43分（高速）・下道なら49分。',pin('山城屋へ','旅館 山城屋 湯平'))},
     {key:'11/9',dow:'月',title:'11/9(月)｜帰京・オンライン会議',sub:'返却を早めに終え、16時の会議へ。',html:
       `<div class="note"><strong>16:00のオンライン会議</strong><br>預けなし＝12:22発 → <span class="nowrap">最寄り駅14:10着</span>（会議の110分前）。<br>預けあり＝12:42発 → <span class="nowrap">最寄り駅14:30着</span>（会議の90分前）。</div>`+
       item('日の出後','散策','see','任意：湯平石畳を10〜15分','朝食と出発に支障がない場合だけ。')+
